@@ -44,6 +44,9 @@ add_action( 'init', function() {
 
 
 add_action( 'pre_get_posts', function( $query ) {
+	global $INTL_TERRITORIES;
+	global $US_TERRITORIES;
+	
 	if ( ! is_post_type_archive( 'counselors' ) ) {
 		return;
 	}

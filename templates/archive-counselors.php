@@ -47,6 +47,7 @@ while ( have_posts() ) : the_post();
 				<p>
 					<?php echo esc_html( $post->phone ); ?>
 			</div>
+			<?php if ( isset( $post->locations ) && $post->locations ): ?>
 			<div class="counselor__territories">
 				<span>Territories: </span><?php
 				foreach ( $post->locations as $key => $location ) :
@@ -55,7 +56,8 @@ while ( have_posts() ) : the_post();
 					echo esc_html( $location );
 	endforeach;
 ?>
-			</div>	
+			</div>
+		<?php endif; ?>
 		</section>
 	</article>
 <?php endwhile; ?>

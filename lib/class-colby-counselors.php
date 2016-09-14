@@ -332,7 +332,7 @@ class Colby_Counselors {
 	 */
 	public function set_scripts() {
 		$this->scripts = [
-            [ $this->text_domain, "{$this->assets_url}{$this->text_domain}", [ 'jquery' ], $this->version, true ]
+            [ $this->text_domain, "{$this->assets_url}{$this->text_domain}.js", [ 'jquery' ], $this->version, true ]
         ];
 
         foreach ( $this->scripts as $script ) {

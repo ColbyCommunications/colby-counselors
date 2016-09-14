@@ -1,10 +1,8 @@
 <?php
 
-if ( ! function_exists( 'register_field_group' ) ) {
-    return;
-}
+if( function_exists('register_field_group') ):
 
-register_field_group( [
+register_field_group([
 'id' => 'acf_counselor-fields',
 	'title' => 'Counselor Fields',
 	'fields' => [
@@ -170,3 +168,5 @@ register_field_group( [
 		],
 	'menu_order' => 0,
 ] );
+
+endif;

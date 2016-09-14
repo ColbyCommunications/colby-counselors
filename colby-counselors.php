@@ -9,7 +9,7 @@
 
 global $colby_counselors;
 
- $plugin_data = [ // For easy use throughout the plugin.
+$plugin_data = [ // For easy use throughout the plugin.
  	'Plugin Name' => 'Colby Counselors',
  	'Description' => 'Plugin for displaying information about Colby College Admissions counselors.',
  	'Version' => '0.01',
@@ -29,6 +29,7 @@ global $colby_counselors;
 
  // Admin (admin_init doesn't work with ACF options pages).
  add_action( 'init', function() use ( $colby_counselors ) {
+
  	$plugin_classes = [
  		'Colby_Counselors\\Query_Handler',
  		'Colby_Counselors\\Template_Router',
@@ -38,6 +39,11 @@ global $colby_counselors;
  		new $class( $colby_counselors );
  	}
  }, 1 );
+
+
+ add_action( 'after_setup_theme', function() {
+     require_once( 'fields.php' );
+ } );
 
  /**
   * For development -- pretty-print data in the browser; optionally var_dump; optionally wp_die.

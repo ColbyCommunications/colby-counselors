@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ( ! function_exists( 'register_field_group' ) ) {
     return;
@@ -45,9 +45,9 @@ register_field_group( [
 				'Massachusetts (Boston area)' => 'Massachusetts (Boston area)',
 				'Massachusetts (Boston, Cambridge)' => 'Massachusetts (Boston, Cambridge)',
 				'Massachusetts (Central)' => 'Massachusetts (Central)',
-				'Massachusetts (Cape Cod)' => 'Massachusetts (Cape Cod)',
+                'Massachusetts (Central, Cape Cod, and Islands)' => 'Massachusetts (Central, Cape Cod, and Islands)',
 				'Massachusetts (Essex County)' => 'Massachusetts (Essex County)',
-				'Massachusetts (Essex County, South Shore)' => 'Massachusetts (Essex County, South Shore)',
+				'Massachusetts (Essex, Norfolk, Bristol, and Plymouth Counties)' => 'Massachusetts (Essex, Norfolk, Bristol, and Plymouth Counties)',
 				'Massachusetts (Lowell, Concord, Wellesley, Milton, Lexington, Waltham)' => 'Massachusetts (Lowell, Concord, Wellesley, Milton, Lexington, Waltham)',
 				'Massachusetts (Western)' => 'Massachusetts (Western)',
 				'Michigan' => 'Michigan',
@@ -61,11 +61,8 @@ register_field_group( [
 				'New Jersey' => 'New Jersey',
 				'New Mexico' => 'New Mexico',
 				'New York' => 'New York',
-				'New York City' => 'New York City',
 				'New York (Manhattan)' => 'New York (Manhattan)',
-				'New York (Long Island)' => 'New York (Long Island)',
-				'New York (except Manhattan and Long Island)' => 'New York (except Manhattan and Long Island)',
-				'New York (Upstate)' => 'New York (Upstate)',
+				'New York (except Westchester and Manhattan)' => 'New York (except Westchester and Manhattan)',
 				'New York (Westchester)' => 'New York (Westchester)',
 				'North Carolina' => 'North Carolina',
 				'North Dakota' => 'North Dakota',
@@ -89,8 +86,8 @@ register_field_group( [
 				'Bermuda' => 'Bermuda',
 				'Canada' => 'Canada',
 				'Caribbean' => 'Caribbean',
-                                'China' => 'China',
 				'East Asia' => 'East Asia',
+                'East and Southeast Asia' => 'East and Southeast Asia',
 				'Eurasia' => 'Eurasia',
 				'Europe' => 'Europe',
 				'Greater Indian Subcontinent' => 'Greater Indian Subcontinent',
@@ -98,7 +95,6 @@ register_field_group( [
 				'Mexico' => 'Mexico',
 				'Middle East' => 'Middle East',
 				'Oceania' => 'Oceania',
-				'Southeast Asia' => 'Southeast Asia',
 				],
 			'default_value' => '',
 			'allow_null' => 0,

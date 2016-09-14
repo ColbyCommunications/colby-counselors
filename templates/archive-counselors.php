@@ -26,7 +26,7 @@ while ( have_posts() ) : the_post();
 ?>
 
 	<article <?php post_class( 'counselor' ); ?>><?php
-		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_id() ), 'small' );
+		$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_id() ), 'thumbnail' );
 	if ( $thumbnail ) :  ?>
 
 		<section class="counselor__image-container">

@@ -19,6 +19,15 @@ class Query_Handler {
     		return;
     	}
 
+		$us_territories = array_map( function( $territory ) {
+		   return trim( $territory );
+		}, explode( '<br />', get_field( 'us_territories', 'option' ) ) );
+		$international_territories = array_map( function( $territory ) {
+		   return trim( $territory );
+		}, explode( '<br />', get_field( 'international_territories', 'option' ) ) );
+
+		$all_territories = array_merge( $us_territories, $international_territories );
+
     	$query->set( 'orderby', 'name' );
     	$query->set( 'order', 'ASC' );
     	$query->set( 'posts_per_page', 99 );
@@ -30,12 +39,12 @@ class Query_Handler {
     	}
 
     	if ( isset( $_POST['location-pulldown'] ) &&
-    			in_array( $_POST['location-pulldown'], $this->plugin->us_territories ) ) {
+    			in_array( $_POST['location-pulldown'], $all_territories ) ) {
     		$query->set( 'location-pulldown', $_POST['location-pulldown'] );
     	}
 
     	if ( isset( $_POST['international'] ) &&
-    			in_array( $_POST['international'], $this->plugin->intl_territories ) ) {
+    			in_array( $_POST['international'], $all_territories ) ) {
     		$query->set( 'international', $_POST['international'] );
     	}
     }

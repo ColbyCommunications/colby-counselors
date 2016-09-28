@@ -2,6 +2,16 @@
 
 if( function_exists('register_field_group') ):
 
+$us_territories = explode( '<br />', get_field( 'us_territories', 'option' ) );
+$international_territories = explode( '<br />', get_field( 'international_territories', 'option' ) );
+
+$territories = [];
+foreach ( array_merge( $us_territories, $international_territories ) as $territory ) {
+	if ( trim( $territory ) ) {
+		$territories[$territory] = $territory;
+	}
+}
+
 register_field_group([
 'id' => 'acf_counselor-fields',
 	'title' => 'Counselor Fields',
@@ -12,88 +22,7 @@ register_field_group([
 			'name' => 'locations',
 			'type' => 'select',
 			'required' => 0,
-			'choices' => [
-				'Alabama' => 'Alabama',
-				'Alaska' => 'Alaska',
-				'Arizona' => 'Arizona',
-				'Arkansas' => 'Arkansas',
-				'California' => 'California',
-				'California (Northern)' => 'California (Northern)',
-				'California (Southern)' => 'California (Southern)',
-				'Colorado' => 'Colorado',
-				'Connecticut' => 'Connecticut',
-				'Delaware' => 'Delaware',
-				'District of Columbia' => 'District of Columbia',
-				'Florida' => 'Florida',
-				'Georgia' => 'Georgia',
-				'Hawaii' => 'Hawaii',
-				'Idaho' => 'Idaho',
-				'Illinois' => 'Illinois',
-				'Indiana' => 'Indiana',
-				'Iowa' => 'Iowa',
-				'Kansas' => 'Kansas',
-				'Kentucky' => 'Kentucky',
-				'Louisiana' => 'Louisiana',
-				'Maine' => 'Maine',
-				'Maine (Central)' => 'Maine (Central)',
-				'Maine (Northern)' => 'Maine (Northern)',
-				'Maine (Southern)' => 'Maine (Southern)',
-				'Maryland' => 'Maryland',
-				'Massachusetts' => 'Massachusetts',
-				'Massachusetts (Boston area)' => 'Massachusetts (Boston area)',
-				'Massachusetts (Boston, Cambridge)' => 'Massachusetts (Boston, Cambridge)',
-				'Massachusetts (Central)' => 'Massachusetts (Central)',
-                'Massachusetts (Central, Cape Cod, and Islands)' => 'Massachusetts (Central, Cape Cod, and Islands)',
-				'Massachusetts (Essex County)' => 'Massachusetts (Essex County)',
-				'Massachusetts (Essex, Norfolk, Bristol, and Plymouth Counties)' => 'Massachusetts (Essex, Norfolk, Bristol, and Plymouth Counties)',
-				'Massachusetts (Lowell, Concord, Wellesley, Milton, Lexington, Waltham)' => 'Massachusetts (Lowell, Concord, Wellesley, Milton, Lexington, Waltham)',
-				'Massachusetts (Western)' => 'Massachusetts (Western)',
-				'Michigan' => 'Michigan',
-				'Minnesota' => 'Minnesota',
-				'Mississippi' => 'Mississippi',
-				'Missouri' => 'Missouri',
-				'Montana' => 'Montana',
-				'Nebraska' => 'Nebraska',
-				'Nevada' => 'Nevada',
-				'New Hampshire' => 'New Hampshire',
-				'New Jersey' => 'New Jersey',
-				'New Mexico' => 'New Mexico',
-				'New York' => 'New York',
-				'New York (Manhattan)' => 'New York (Manhattan)',
-				'New York (except Westchester and Manhattan)' => 'New York (except Westchester and Manhattan)',
-				'New York (Westchester)' => 'New York (Westchester)',
-				'North Carolina' => 'North Carolina',
-				'North Dakota' => 'North Dakota',
-				'Ohio' => 'Ohio',
-				'Oklahoma' => 'Oklahoma',
-				'Oregon' => 'Oregon',
-				'Pennsylvania' => 'Pennsylvania',
-				'Rhode Island' => 'Rhode Island',
-				'South Carolina' => 'South Carolina',
-				'South Dakota' => 'South Dakota',
-				'Tennessee' => 'Tennessee',
-				'Texas' => 'Texas',
-				'Utah' => 'Utah',
-				'Vermont' => 'Vermont',
-				'Virginia' => 'Virginia',
-				'Washington' => 'Washington',
-				'West Virginia' => 'West Virginia',
-				'Wisconsin' => 'Wisconsin',
-				'Wyoming' => 'Wyoming',
-				'Africa' => 'Africa',
-				'Bermuda' => 'Bermuda',
-				'Canada' => 'Canada',
-				'Caribbean' => 'Caribbean',
-				'East Asia' => 'East Asia',
-                'East and Southeast Asia' => 'East and Southeast Asia',
-				'Eurasia' => 'Eurasia',
-				'Europe' => 'Europe',
-				'Greater Indian Subcontinent' => 'Greater Indian Subcontinent',
-				'Latin America' => 'Latin America',
-				'Mexico' => 'Mexico',
-				'Middle East' => 'Middle East',
-				'Oceania' => 'Oceania',
-				],
+			'choices' => $territories,
 			'default_value' => '',
 			'allow_null' => 0,
 			'multiple' => 1,
@@ -168,5 +97,76 @@ register_field_group([
 		],
 	'menu_order' => 0,
 ] );
+
+endif;
+
+
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array (
+	'key' => 'group_57ec061700c87',
+	'title' => 'Counselor Territories',
+	'fields' => array (
+		array (
+			'key' => 'field_57ec062849913',
+			'label' => 'U.S. Territories',
+			'name' => 'us_territories',
+			'type' => 'textarea',
+			'instructions' => 'Enter each territory on its own line.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'maxlength' => '',
+			'rows' => 20,
+			'new_lines' => 'br',
+			'readonly' => 0,
+			'disabled' => 0,
+		),
+		array (
+			'key' => 'field_57ec066049914',
+			'label' => 'International Territories',
+			'name' => 'international_territories',
+			'type' => 'textarea',
+			'instructions' => 'Enter each territory on its own line.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'maxlength' => '',
+			'rows' => 20,
+			'new_lines' => 'br',
+			'readonly' => 0,
+			'disabled' => 0,
+		),
+	),
+	'location' => array (
+		array (
+			array (
+				'param' => 'options_page',
+				'operator' => '==',
+				'value' => 'acf-options-counselor-territories',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => 1,
+	'description' => '',
+));
 
 endif;

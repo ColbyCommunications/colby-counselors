@@ -68,3 +68,10 @@ $plugin_data = [ // For easy use throughout the plugin.
 
  }
  endif;
+
+ add_action( 'init', function() {
+     acf_add_options_sub_page(array(
+ 		'title' 	=> 'Counselor Territories',
+ 		'parent_slug' 	=> 'edit.php?post_type=counselors',
+ 	));
+ } );

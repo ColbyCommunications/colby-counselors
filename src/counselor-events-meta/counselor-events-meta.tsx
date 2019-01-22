@@ -15,64 +15,15 @@ export const CounselorEventsMeta = ( { fields, updateFields }: MetaFormProps ) =
 				/>
 			</PanelBody>
 			<PanelBody>
-				<PanelRow className="time-row">
-					<style>
-						{`.time-row {
-                            flex-wrap: wrap;
-                        }
-                        .time-row > div {
-                            min-width: 300px;
-                        }`}
-					</style>
-					<div>
-						<h2>Start Time</h2>
-						<DateTimePicker
-							currentDate={fields.start_time}
-							onChange={( newTime: string ) => updateFields( { start_time: newTime } )}
-							is12Hour={true}
-						/>
-						<input type="hidden" name="start_time" value={fields.start_time} />
-					</div>
-					<div>
-						<h2>End Time</h2>
-						<DateTimePicker
-							currentDate={fields.end_time}
-							onChange={( newTime: string ) => updateFields( { end_time: newTime } )}
-							is12Hour={true}
-						/>
-						<input type="hidden" name="start_time" value={fields.end_time} />
-					</div>
-				</PanelRow>
-			</PanelBody>
-			<PanelBody>
-				<TextControl
-					label="Contact Name/Description"
-					name="description"
-					value={fields.description}
-					onChange={( newValue: string ) => {
-						updateFields( { description: newValue } );
-					}}
-				/>
-
-				<TextControl
-					label="Contact Email"
-					name="email"
-					type="email"
-					value={fields.email}
-					onChange={( newValue: string ) => {
-						updateFields( { email: newValue } );
-					}}
-				/>
-
-				<TextControl
-					label="More Info Link"
-					type="url"
-					name="url"
-					value={fields.url}
-					onChange={( newValue: string ) => {
-						updateFields( { url: newValue } );
-					}}
-				/>
+				<div>
+					<h2>Start Time</h2>
+					<DateTimePicker
+						currentDate={fields.start_time}
+						onChange={( newTime: string ) => updateFields( { start_time: newTime } )}
+						is12Hour={true}
+					/>
+					<input type="hidden" name="start_time" value={fields.start_time} />
+				</div>
 			</PanelBody>
 		</Panel>
 	</div>

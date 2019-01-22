@@ -25,16 +25,6 @@
 		<p>
 			<?php colby_counselors_the_meta_field( 'start_time' ); ?>
 		</p>
-		<div class="counselor__contact">
-			<p>
-				<a href="mailto:<?php colby_counselors_the_meta_field( 'email' ); ?>">
-					<?php colby_counselors_the_meta_field( 'email' ); ?>
-				</a>
-			</p>
-			<p>
-				<?php colby_counselors_the_meta_field( 'phone' ); ?>
-			</p>
-		</div>
 
 	</section>
 </article>

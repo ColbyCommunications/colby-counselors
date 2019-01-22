@@ -3,6 +3,7 @@
  * Plugin Name: Colby Counselors
  * Description: Plugin for displaying information about Colby College Admissions counselors
  * Author: John Watkins, Colby Communications Department
+ * Version 2.0
  *
  * @package colby-counselors
  */
@@ -60,6 +61,34 @@ function colby_counselors_get_territories( $parent ) {
 
 	$terms = get_term_children( $parent_term->term_id, Colby_Counselors\Territories_Taxonomy::NAME );
 	$terms = array_map( 'get_term', $terms );
+
+	if ( is_archive() ) {
+		$post_type = get_query_var( 'post_type' );
+
+		$terms = array_filter(
+			$terms,
+			function( WP_Term $term ) use ( $post_type ) {
+				$query = new WP_Query(
+					[
+						'post_type' => $post_type,
+						'tax_query' => [
+							[
+								'taxonomy' => Colby_Counselors\Territories_Taxonomy::NAME,
+								'terms'    => $term->term_id,
+							],
+						],
+					]
+				);
+
+				if ( is_wp_error( $query ) ) {
+					return false;
+				}
+
+				return $query->have_posts();
+			}
+		);
+
+	}
 
 	usort(
 		$terms,
@@ -181,10 +210,10 @@ function colby_counselors_the_territory_list() : void {
  * @return void
  */
 function colby_counselors_archive_title() : void {
-	if ( Colby_Counselors\Counselors_Post_Type::NAME === get_post_type( get_queried_object_id() ) ) {
-		$value = 'Meet Your Counselor';
+	if ( Colby_Counselors\Counselors_Post_Type::NAME === get_query_var( 'post_type' ) ) {
+		$value = __( 'Meet Your Counselor', 'colby-counselors' );
 	} else {
-		$value = 'Colby Counselor Events';
+		$value = __( 'Colby Counselor Events', 'colby-counselors' );
 	}
 
 	echo esc_html( $value );

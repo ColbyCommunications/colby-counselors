@@ -1,0 +1,7 @@
+language: php
+
+before_script:
+  - composer install
+
+script:
+  - composer run lint

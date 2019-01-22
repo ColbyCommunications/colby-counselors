@@ -1,5 +1,14 @@
 {
-"require": {
-"frozzare/wp-autoload": "^2.0"
-}
+  "require": {
+    "php": "^7.1.0",
+    "johnwatkins0/wp-autoload": "^1.0",
+    "johnwatkins0/wp-singleton": "^1.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.4",
+    "wp-coding-standards/wpcs": "^1.2"
+  },
+  "scripts": {
+    "lint": "phpcs"
+  }
 }

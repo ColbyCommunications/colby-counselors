@@ -1,7 +1,10 @@
 language: php
 
+notifications:
+    email: p9h6v9b9g1u1v0w4@colbycommunications.slack.com
+
 before_script:
-  - composer install
+    - composer install
 
 script:
-  - composer run lint
+    - composer run lint

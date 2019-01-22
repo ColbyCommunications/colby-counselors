@@ -1,34 +1,35 @@
 {
-  "name": "colby-counselors",
-  "version": "0.0.1",
-  "description": "",
-  "main": "dist",
-  "scripts": {
-    "start": "webpack --watch"
-  },
-  "author": "John Watkins",
-  "license": "ISC",
-  "dependencies": {
-    "@wordpress/components": "^7.0.6",
-    "@wordpress/compose": "^3.0.1",
-    "@wordpress/dom-ready": "^2.0.2",
-    "@wordpress/element": "^2.1.9",
-    "lodash": "^4.17.11",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-sortable-hoc": "^1.4.0",
-    "typescript": "^3.2.2"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.119",
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
-    "@types/react-sortable-hoc": "^0.6.4",
-    "prettier": "^1.15.3",
-    "ts-loader": "^5.3.3",
-    "tslint": "^5.12.1",
-    "tslint-config-prettier": "^1.17.0",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
-  }
+	"name": "colby-counselors",
+	"version": "0.0.1",
+	"description": "",
+	"main": "dist",
+	"scripts": {
+		"start": "webpack --watch --mode=development",
+		"build": "webpack --mode=production"
+	},
+	"author": "John Watkins",
+	"license": "ISC",
+	"dependencies": {
+		"@wordpress/components": "^7.0.6",
+		"@wordpress/compose": "^3.0.1",
+		"@wordpress/dom-ready": "^2.0.2",
+		"@wordpress/element": "^2.1.9",
+		"lodash": "^4.17.11",
+		"react": "^16.7.0",
+		"react-dom": "^16.7.0",
+		"react-sortable-hoc": "^1.4.0",
+		"typescript": "^3.2.2"
+	},
+	"devDependencies": {
+		"@types/lodash": "^4.14.119",
+		"@types/react": "^16.7.18",
+		"@types/react-dom": "^16.0.11",
+		"@types/react-sortable-hoc": "^0.6.4",
+		"prettier": "^1.15.3",
+		"ts-loader": "^5.3.3",
+		"tslint": "^5.12.1",
+		"tslint-config-prettier": "^1.17.0",
+		"webpack": "^4.28.4",
+		"webpack-cli": "^3.2.1"
+	}
 }

@@ -1,5 +1,8 @@
 language: php
 
+php:
+    - '7.1'
+
 notifications:
     email: p9h6v9b9g1u1v0w4@colbycommunications.slack.com
 

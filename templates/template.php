@@ -9,6 +9,7 @@ get_header();
 if ( have_posts() ) : ?>
 
 <main class="colby-counselors-main main" id="main">
+
 	<h1><?php colby_counselors_archive_title(); ?></h1>
 
 	<div id="colby-counselors-territory-picker"></div>

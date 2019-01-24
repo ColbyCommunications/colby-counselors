@@ -50,17 +50,6 @@ final class Counselor_Events_Post_Type extends Post_Type {
 	];
 
 	/**
-	 * Sets up hooks.
-	 *
-	 * @return void
-	 */
-	protected function init() {
-		parent::init();
-
-		add_filter( 'body_class', [ $this, 'filter_body_class' ] );
-	}
-
-	/**
 	 * Provides the post type args.
 	 *
 	 * @return array
@@ -106,22 +95,5 @@ final class Counselor_Events_Post_Type extends Post_Type {
 		);
 
 		$query->set( 'orderby', [ 'time_clause' => 'asc' ] );
-	}
-
-	/**
-	 * Filters the body classes for this post type.
-	 *
-	 * @param array $classes Unfiltered classes array.
-	 * @return array
-	 */
-	public function filter_body_class( array $classes ) : array {
-		if ( self::NAME === get_query_var( 'post_type' ) ) {
-
-			if ( ! in_array( 'post-type-archive-counselors', $classes, true ) ) {
-				$classes[] = 'post-type-archive-counselors';
-			}
-		}
-
-		return $classes;
 	}
 }

@@ -69,6 +69,7 @@ abstract class Post_Type {
 			10,
 			2
 		);
+		add_filter( 'body_class', [ $this, 'filter_body_class' ] );
 	}
 
 	/**
@@ -225,5 +226,21 @@ abstract class Post_Type {
 		}
 
 		return $post_array;
+	}
+
+	/**
+	 * Filters the body classes for this post type.
+	 *
+	 * @param array $classes Unfiltered classes array.
+	 * @return array
+	 */
+	public function filter_body_class( array $classes ) : array {
+		if ( static::NAME === get_query_var( 'post_type' ) ) {
+			if ( ! in_array( 'post-type-archive-counselors', $classes, true ) ) {
+				$classes[] = 'post-type-archive-counselors';
+			}
+		}
+
+		return $classes;
 	}
 }

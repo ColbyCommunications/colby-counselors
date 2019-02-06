@@ -10,6 +10,7 @@
 	"author": "John Watkins",
 	"license": "ISC",
 	"dependencies": {
+		"@babel/polyfill": "^7.2.5",
 		"@wordpress/components": "^7.0.6",
 		"@wordpress/compose": "^3.0.1",
 		"@wordpress/dom-ready": "^2.0.2",

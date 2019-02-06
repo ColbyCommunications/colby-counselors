@@ -137,7 +137,12 @@ abstract class Post_Type {
 			true
 		);
 
-		wp_enqueue_style( 'wp-components' );
+		wp_enqueue_style(
+			'wp-components',
+			'https://unpkg.com/@wordpress/components@7.0.8/build-style/style.css',
+			[],
+			'7.0.8'
+		);
 
 		wp_localize_script(
 			static::NAME,

@@ -3,8 +3,8 @@ const path = require('path');
 module.exports = {
 	mode: 'development',
 	entry: {
-		'admin-counselors': path.resolve(__dirname, 'src/admin-counselors.index.tsx'),
-		'admin-counselor-events': path.resolve(__dirname, 'src/admin-counselor-events.index.tsx'),
+		'admin-counselors': ['@babel/polyfill', path.resolve(__dirname, 'src/admin-counselors.index.tsx')],
+		'admin-counselor-events': ['@babel/polyfill', path.resolve(__dirname, 'src/admin-counselor-events.index.tsx')],
 	},
 	module: {
 		rules: [

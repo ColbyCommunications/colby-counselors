@@ -1,0 +1,9 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "defaultSeverity": "error",
+  "jsRules": {},
+  "rules": {
+    "interface-name": [true, "never-prefix"],
+    "space-within-parens": [true, 1]
+  }
+}

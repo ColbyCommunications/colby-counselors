@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '35e59de4710b0d6ef1e7e82248a7a88e' => $vendorDir . '/frozzare/wp-autoload/src/autoload.php',
+    'c4cab46db2c506b61fa620085fe98417' => $vendorDir . '/johnwatkins0/wp-autoload/wp-autoload.php',
+    'fe6a73718b86f419d4e88690e7d36e35' => $vendorDir . '/johnwatkins0/wp-singleton/wp-singleton.php',
 );

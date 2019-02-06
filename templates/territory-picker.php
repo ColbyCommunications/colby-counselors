@@ -5,44 +5,69 @@
  * @package Colby/Counselors
  */
 
-global $colby_counselors; ?>
+$us_territories            = colby_counselors_get_us_territories();
+$international_territories = colby_counselors_get_global_territories();
 
-<form id="location-filter" action="" method="POST">
+?>
+<style>
+.location-filter h1 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.location-filter__forms {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+@media screen and (min-width: 592px) {
+	.location-filter__forms {
+		flex-wrap: nowrap;
+	}
+}
+#location-filter form {
+	margin-bottom: 0;
+}
+</style>
+<div id="location-filter" class="location-filter">
 	<h1>Filter by Territory:</h1>
+	<div class="location-filter__forms">
 
-	<select name="location-pulldown" id="location-pulldown">
-		<option value="">-- U.S. --</option>
-		<?php foreach ( $colby_counselors->us_territories as $territory ) : ?>
+		<form id="location-filter" action="" method="GET">
 
-		<option value="<?php echo esc_html( $territory ); ?>"<?php
-		if ( get_query_var( 'location-pulldown' ) === $territory ) : ?> selected<?php
-endif; ?>>
-			<?php echo esc_html( $territory ); ?>
+			<select name="territories" id="location-pulldown" onchange="this.form.submit()">
+				<option value="">-- U.S. --</option>
+				<?php foreach ( $us_territories as $territory ) : ?>
 
-		</option>
-		<?php endforeach; ?>
+					<option value="<?php echo esc_attr( $territory->slug ); ?>"
+						<?php if ( get_query_var( 'territories' ) === $territory->slug ) : ?>
+							selected
+						<?php endif; ?>
+						>
+						<?php echo esc_html( $territory->name ); ?>
 
-	</select>
+					</option>
+				<?php endforeach; ?>
 
-	<select id="international" name="international">
-		<option value="">-- International --</option>
-		<?php foreach ( $colby_counselors->intl_territories as $territory ) : ?>
+			</select>
+		</form>
+		<form id="location-filter" action="" method="GET">
+			<select id="international" name="territories" onchange="this.form.submit()">
+				<option value="">-- International --</option>
+				<?php foreach ( $international_territories as $territory ) : ?>
+					<option value="<?php echo esc_attr( $territory->slug ); ?>"
+						<?php if ( get_query_var( 'territories' ) === $territory->slug ) : ?>
+							selected
+						<?php endif; ?>
+				>
+					<?php echo esc_html( $territory->name ); ?>
+				</option>
+				<?php endforeach; ?>
 
-		<option value="<?php echo esc_html( $territory ); ?>"<?php
-		if ( get_query_var( 'international' ) === $territory ) : ?> selected<?php
-endif; ?>>
-			<?php echo esc_html( $territory ); ?>
+			</select>
 
-		</option>
-		<?php endforeach; ?>
-
-	</select>
-
-	<?php if ( get_query_var( 'international' ) || get_query_var( 'location-pulldown' ) ) : ?>
-
-	<a href="">Reset</a>
-	<?php endif; ?>
-
-	<?php wp_nonce_field( 'territory_picker', 'territory_form' ); ?>
-
-</form>
+			<?php if ( get_query_var( 'territory' ) ) : ?>
+				<a href="">Reset</a>
+			<?php endif; ?>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+language: php
+
+php:
+    - '7.1'
+
+notifications:
+    slack: colbycommunications:7VDpGw5uHu7tZ7aHDO2puCfG
+
+before_script:
+    - composer install
+
+script:
+    - composer run lint

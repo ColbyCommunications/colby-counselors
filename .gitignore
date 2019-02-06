@@ -1,3 +1,16 @@
+*.log
+
 node_modules
 js/*.js
 
+vendor/*
+!vendor/johnwatkins0/
+!vendor/autoload.php
+!vendor/composer/
+vendor/**/*.xml
+vendor/**/*.json
+vendor/**/*.lock
+vendor/**/*.md
+vendor/**/*.yml
+vendor/**/.gitignore
+vendor/**/LICENSE

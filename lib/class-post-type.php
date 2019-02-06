@@ -129,6 +129,12 @@ abstract class Post_Type {
 			return;
 		}
 
+		$screen = get_current_screen();
+
+		if ( static::NAME !== $screen->post_type ) {
+			return;
+		}
+
 		wp_enqueue_script(
 			static::NAME,
 			sprintf( '%sdist/admin-%s.js', colby_counselors_url(), static::NAME ),

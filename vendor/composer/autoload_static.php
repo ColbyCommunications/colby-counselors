@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita8b0b555f47510ca92567d8d37c1e104
+class ComposerStaticInitd24ba7633efa333300059bbbc62c8670
 {
     public static $files = array (
         'c4cab46db2c506b61fa620085fe98417' => __DIR__ . '/..' . '/johnwatkins0/wp-autoload/wp-autoload.php',

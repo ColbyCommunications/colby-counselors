@@ -16,9 +16,6 @@ module.exports = {
 		],
 	},
 	externals: {
-		react: 'React',
-		'react-dom': 'ReactDOM',
-		lodash: 'lodash',
 		'colby-counselors-backend': 'colbyCounselorsBackend',
 	},
 	resolve: {

@@ -132,7 +132,7 @@ abstract class Post_Type {
 		wp_enqueue_script(
 			static::NAME,
 			sprintf( '%sdist/admin-%s.js', colby_counselors_url(), static::NAME ),
-			[ 'react', 'react-dom', 'lodash' ],
+			[],
 			filemtime( sprintf( '%sdist/admin-%s.js', colby_counselors_path(), static::NAME ) ),
 			true
 		);

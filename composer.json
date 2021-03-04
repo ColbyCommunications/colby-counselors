@@ -1,4 +1,6 @@
 {
+  "name": "colbycommunications/colby-counselors",
+  "type": "wordpress-plugin",
   "require": {
     "php": "^7.1.0",
     "johnwatkins0/wp-autoload": "^1.0",

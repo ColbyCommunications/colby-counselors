@@ -70,6 +70,7 @@ abstract class Post_Type {
 			2
 		);
 		add_filter( 'body_class', [ $this, 'filter_body_class' ] );
+		add_filter('document_title_parts', [ $this, 'counselor_archives_title' ]);
 	}
 
 	/**
@@ -92,6 +93,15 @@ abstract class Post_Type {
 			);
 		}
 	}
+	
+	public function counselor_archives_title( $title_parts_array )
+	{
+		if (get_query_var( 'post_type' ) === 'counselors' && is_post_type_archive( 'counselors' )) {
+			$title_parts_array['title'] = "Meet Your Counselor";
+		}
+		return  $title_parts_array;
+	}
+	
 
 	/**
 	 * Filters the archive query.

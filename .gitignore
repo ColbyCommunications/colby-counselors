@@ -14,3 +14,4 @@ vendor/**/*.md
 vendor/**/*.yml
 vendor/**/.gitignore
 vendor/**/LICENSE
+/dist

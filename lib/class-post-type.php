@@ -60,6 +60,7 @@ abstract class Post_Type {
 		add_action( 'pre_get_posts', [ $this, 'modify_archive_query' ] );
 		add_filter( 'template_include', [ $this, 'include_template' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'set_up_assets' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'set_up_fe_assets' ] );
 		add_action( 'edit_form_after_editor', [ $this, 'add_meta_box' ] );
 		add_filter(
 			'wp_insert_post_data',
@@ -154,6 +155,15 @@ abstract class Post_Type {
 			'colbyCounselorsBackend',
 			static::get_localized_data()
 		);
+	}
+	
+	/**
+	 * Enqueues the script.
+	 *
+	 * @return void
+	 */
+	public function set_up_fe_assets() : void {
+		wp_enqueue_style('app', plugins_url( '/dist/app.css', __DIR__ ), array(), filemtime(plugins_url( '/dist/app.css', __DIR__ )), false);
 	}
 
 	/**

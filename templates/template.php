@@ -8,9 +8,9 @@
 get_header();
 if ( have_posts() ) : ?>
 
-<main class="colby-counselors-main main" id="main">
+<main class="colby-counselors-main main container mx-auto px-container mt-8 md:mt-8 lg:mt-16" id="main">
 
-	<h1><?php colby_counselors_archive_title(); ?></h1>
+	<h1 class="text-3xl font-bold" style="color: #273057"><?php colby_counselors_archive_title(); ?></h1>
 
 	<div id="colby-counselors-territory-picker"></div>
 

@@ -15,7 +15,7 @@ if ( ! function_exists( 'register_wp_autoload' ) ) {
 JohnWatkins0\WPAutoload\register_wp_autoload( 'Colby_Counselors\\', __DIR__ . '/lib' );
 
 Colby_Counselors\Counselors_Post_Type::get_instance();
-Colby_Counselors\Counselor_Events_Post_Type::get_instance();
+// Colby_Counselors\Counselor_Events_Post_Type::get_instance();
 Colby_Counselors\Territories_Taxonomy::get_instance();
 
 /**
@@ -142,19 +142,19 @@ function colby_counselors_get_meta_field( string $key ) : string {
 		case Colby_Counselors\Counselors_Post_Type::JOB_TITLE_META_KEY:
 		case Colby_Counselors\Counselors_Post_Type::EMAIL_META_KEY:
 		case Colby_Counselors\Counselors_Post_Type::PHONE_META_KEY:
-		case Colby_Counselors\Counselor_Events_Post_Type::LOCATION_META_KEY:
+		// case Colby_Counselors\Counselor_Events_Post_Type::LOCATION_META_KEY:
 			return $value;
 
-		case Colby_Counselors\Counselor_Events_Post_Type::START_TIME_META_KEY:
-		case Colby_Counselors\Counselor_Events_Post_Type::END_TIME_META_KEY:
-			$time = strtotime( $value );
-			return esc_html(
-				str_replace(
-					[ 'am', 'pm' ],
-					[ 'a.m.', 'p.m.' ],
-					date( get_option( 'date_format' ), $time ) . date( ' g:i a', $time )
-				)
-			);
+		// case Colby_Counselors\Counselor_Events_Post_Type::START_TIME_META_KEY:
+		// case Colby_Counselors\Counselor_Events_Post_Type::END_TIME_META_KEY:
+		// 	$time = strtotime( $value );
+		// 	return esc_html(
+		// 		str_replace(
+		// 			[ 'am', 'pm' ],
+		// 			[ 'a.m.', 'p.m.' ],
+		// 			date( get_option( 'date_format' ), $time ) . date( ' g:i a', $time )
+		// 		)
+		// 	);
 	}
 
 	return '';
@@ -212,9 +212,10 @@ function colby_counselors_the_territory_list() : void {
 function colby_counselors_archive_title() : void {
 	if ( Colby_Counselors\Counselors_Post_Type::NAME === get_query_var( 'post_type' ) ) {
 		$value = __( 'Meet Your Counselor', 'colby-counselors' );
-	} else {
-		$value = __( 'Colby Counselor Events', 'colby-counselors' );
-	}
+	} 
+	// else {
+	// 	$value = __( 'Colby Counselor Events', 'colby-counselors' );
+	// }
 
 	echo esc_html( $value );
 }

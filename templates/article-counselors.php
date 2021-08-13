@@ -7,25 +7,26 @@
 
 ?>
 
-<article <?php post_class( 'counselor' ); ?>>
-	<?php if ( has_post_thumbnail() ) : ?>
+<article class="counselor-grid counselor-grid-cols-12 counselor-gap-4 counselor-p-8 counselor-border-b">
 
-		<section class="counselor__image-container">
-			<?php the_post_thumbnail( 'thumbnail', [ 'class' => 'counselor__image' ] ); ?>
-		</section>
+	<?php if ( has_post_thumbnail() ) : ?>
+		
+		<div class="counselor-col-span-12 laptop:counselor-col-span-2 counselor-mb-4 laptop:counselor-mb-0" >
+			<?php the_post_thumbnail( 'medium'); ?>
+		</div>
 	<?php endif; ?>
 
-	<section class="counselor__content">
-		<h1 class="counselor__title">
+	<div class="counselor-col-span-12 laptop:counselor-col-span-8">
+		<h2 class="counselor-font-bold counselor-text-2xl">
 			<?php colby_counselors_the_meta_field( 'first_name' ); ?>
 			<?php colby_counselors_the_meta_field( 'last_name' ); ?>
-		</h1>
-		<h2 class="counselor__job-title">
-			<?php colby_counselors_the_meta_field( 'job_title' ); ?>
 		</h2>
-		<div class="counselor__contact">
+		<h3 class="counselor-text-lg counselor-mb-2" style="color: #273057">
+			<?php colby_counselors_the_meta_field( 'job_title' ); ?>
+		</h3>
+		<div class="counselor-mb-4">
 			<p>
-				<a href="mailto:<?php colby_counselors_the_meta_field( 'email' ); ?>">
+				<a style="color: #273057" href="mailto:<?php colby_counselors_the_meta_field( 'email' ); ?>">
 					<?php colby_counselors_the_meta_field( 'email' ); ?>
 				</a>
 			</p>
@@ -34,10 +35,11 @@
 			</p>
 		</div>
 		<?php if ( has_term( '', Colby_Counselors\Territories_Taxonomy::NAME ) ) : ?>
-			<div class="counselor__territories">
-				<span>Territories: </span>
+			<div class="">
+				<span class="counselor-font-bold">Territories: </span>
 				<?php colby_counselors_the_territory_list(); ?>
 			</div>
 		<?php endif; ?>
-	</section>
+	</div>
+
 </article>

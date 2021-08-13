@@ -39,7 +39,7 @@ final class Territories_Taxonomy {
 	public function register_taxonomy() {
 		register_taxonomy(
 			self::NAME,
-			[ Counselors_Post_Type::NAME, Counselor_Events_Post_Type::NAME ],
+			[ Counselors_Post_Type::NAME ],
 			[
 				'label'              => esc_html__( 'Territories', 'colby-counselors' ),
 				'labels'             => [

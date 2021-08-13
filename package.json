@@ -1,11 +1,16 @@
 {
-	"name": "colby-counselors",
+	"name": "@colbycommunicatioins/colby-counselors",
 	"version": "0.0.1",
 	"description": "",
 	"main": "dist",
 	"scripts": {
-		"start": "webpack --watch --mode=development",
-		"build": "webpack --mode=production"
+		"dev": "npm run development",
+		"development": "mix",
+		"watch": "mix watch",
+		"watch-poll": "mix watch -- --watch-options-poll=1000",
+		"hot": "mix watch --hot",
+		"prod": "npm run production",
+		"production": "mix --production"
 	},
 	"author": "John Watkins",
 	"license": "ISC",
@@ -25,11 +30,15 @@
 		"@types/react": "^16.7.18",
 		"@types/react-dom": "^16.0.11",
 		"@types/react-sortable-hoc": "^0.6.4",
+		"autoprefixer": "^10.3.1",
+		"laravel-mix": "^6.0.18",
+		"mix-tailwindcss": "^1.3.0",
+		"postcss": "^8.3.6",
 		"prettier": "^1.15.3",
+		"tailwindcss": "^2.2.7",
 		"ts-loader": "^5.3.3",
 		"tslint": "^5.12.1",
 		"tslint-config-prettier": "^1.17.0",
-		"webpack": "^4.28.4",
-		"webpack-cli": "^3.2.1"
+		"webpack-cli": "^4.7.2"
 	}
 }

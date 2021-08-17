@@ -97,7 +97,9 @@ abstract class Post_Type {
 	
 	public function counselor_archives_title( $title_parts_array )
 	{
+		do_action( 'qm/debug', 'in counselor_archives_title' );
 		if (get_query_var( 'post_type' ) === 'counselors' && is_post_type_archive( 'counselors' )) {
+			do_action( 'qm/debug', 'in conditional' );
 			$title_parts_array['title'] = "Meet Your Counselor";
 		}
 		return  $title_parts_array;

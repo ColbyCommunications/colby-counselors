@@ -56,6 +56,7 @@ abstract class Post_Type {
 	 * @return void
 	 */
 	protected function init() {
+		do_action( 'qm/debug', 'post type init' );
 		add_action( 'init', [ $this, 'register_post_type' ] );
 		add_action( 'pre_get_posts', [ $this, 'modify_archive_query' ] );
 		add_filter( 'template_include', [ $this, 'include_template' ] );

@@ -57,6 +57,7 @@ abstract class Post_Type {
 	 */
 	protected function init() {
 		do_action( 'qm/debug', 'post type init' );
+		add_filter('document_title_parts', [ $this, 'counselor_archives_title' ]);
 		add_action( 'init', [ $this, 'register_post_type' ] );
 		add_action( 'pre_get_posts', [ $this, 'modify_archive_query' ] );
 		add_filter( 'template_include', [ $this, 'include_template' ] );
@@ -72,7 +73,7 @@ abstract class Post_Type {
 			2
 		);
 		add_filter( 'body_class', [ $this, 'filter_body_class' ] );
-		add_filter('document_title_parts', [ $this, 'counselor_archives_title' ]);
+		
 	}
 
 	/**

@@ -58,6 +58,7 @@ abstract class Post_Type {
 	protected function init() {
 		do_action( 'qm/debug', 'post type init' );
 		add_filter('document_title_parts', [ $this, 'counselor_archives_title' ]);
+		add_filter('pre_get_document_title', [ $this, 'counselor_archives_title2' ]);
 		add_action( 'init', [ $this, 'register_post_type' ] );
 		add_action( 'pre_get_posts', [ $this, 'modify_archive_query' ] );
 		add_filter( 'template_include', [ $this, 'include_template' ] );
@@ -105,6 +106,16 @@ abstract class Post_Type {
 			$title_parts_array['title'] = "Meet Your Counselor";
 		}
 		return  $title_parts_array;
+	}
+	
+	public function counselor_archives_title2( $title )
+	{
+		do_action( 'qm/debug', 'in counselor_archives_title2' );
+		if (get_query_var( 'post_type' ) === 'counselors' && is_post_type_archive( 'counselors' )) {
+			do_action( 'qm/debug', 'in conditional2' );
+			$title = "Meet Your Counselor";
+		}
+		return  $title;
 	}
 	
 

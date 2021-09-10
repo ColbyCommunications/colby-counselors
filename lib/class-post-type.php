@@ -58,6 +58,7 @@ abstract class Post_Type {
 	protected function init() {
 		do_action( 'qm/debug', 'post type init' );
 		add_filter('pre_get_document_title', [ $this, 'counselor_archives_title' ]);
+		add_filter('wpseo_title', [ $this, 'counselor_archives_title' ]);
 		add_action( 'init', [ $this, 'register_post_type' ] );
 		add_action( 'pre_get_posts', [ $this, 'modify_archive_query' ] );
 		add_filter( 'template_include', [ $this, 'include_template' ] );
@@ -177,7 +178,7 @@ abstract class Post_Type {
 	 * @return void
 	 */
 	public function set_up_fe_assets() : void {
-		wp_enqueue_style('app', plugins_url( '/dist/app.css', __DIR__ ), array(), filemtime(plugins_url( '/dist/app.css', __DIR__ )), false);
+		wp_enqueue_style('app', plugins_url( '/dist/app.css', __DIR__ ), array(), filemtime(plugin_dir_path( __FILE__ )), false);
 	}
 
 	/**

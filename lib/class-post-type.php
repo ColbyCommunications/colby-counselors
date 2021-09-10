@@ -113,7 +113,7 @@ abstract class Post_Type {
 		do_action( 'qm/debug', 'in counselor_archives_title' );
 		if (get_query_var( 'post_type' ) === 'counselors' && is_post_type_archive( 'counselors' )) {
 			do_action( 'qm/debug', 'in conditional' );
-			$title = "Meet Your Counselor";
+			$title = "Meet Your Counselor - Colby College Admissions";
 		}
 		return  $title;
 	}

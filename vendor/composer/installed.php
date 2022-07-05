@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '52a3d81f3b3848b70bef7a3d6b5e851ff58fc583',
+        'reference' => 'c613071567d62f616977822d39306620be490f1b',
         'name' => 'colbycommunications/colby-counselors',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '52a3d81f3b3848b70bef7a3d6b5e851ff58fc583',
+            'reference' => 'c613071567d62f616977822d39306620be490f1b',
             'dev_requirement' => false,
         ),
         'johnwatkins0/wp-autoload' => array(

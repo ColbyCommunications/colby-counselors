@@ -139,6 +139,7 @@ function colby_counselors_get_meta_field( string $key ) : string {
 	switch ( $key ) {
 		case Colby_Counselors\Counselors_Post_Type::FIRST_NAME_META_KEY:
 		case Colby_Counselors\Counselors_Post_Type::LAST_NAME_META_KEY:
+		case Colby_Counselors\Counselors_Post_Type::PRONOUNS_META_KEY:
 		case Colby_Counselors\Counselors_Post_Type::JOB_TITLE_META_KEY:
 		case Colby_Counselors\Counselors_Post_Type::EMAIL_META_KEY:
 		case Colby_Counselors\Counselors_Post_Type::PHONE_META_KEY:

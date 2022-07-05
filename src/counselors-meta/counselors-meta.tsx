@@ -1,7 +1,7 @@
 import { CheckboxControl, Panel, PanelBody, TextControl } from '@wordpress/components';
 import * as React from 'react';
 
-export const CounselorsMeta = ( { fields, updateFields }: MetaFormProps ) => (
+export const CounselorsMeta = ({ fields, updateFields }: MetaFormProps) => (
 	<div>
 		<Panel header="Counselor Info">
 			<PanelBody>
@@ -9,8 +9,8 @@ export const CounselorsMeta = ( { fields, updateFields }: MetaFormProps ) => (
 					label="First Name"
 					name="first_name"
 					value={fields.first_name}
-					onChange={( newValue: string ) => {
-						updateFields( { first_name: newValue } );
+					onChange={(newValue: string) => {
+						updateFields({ first_name: newValue });
 					}}
 				/>
 
@@ -18,8 +18,17 @@ export const CounselorsMeta = ( { fields, updateFields }: MetaFormProps ) => (
 					label="Last Name"
 					name="last_name"
 					value={fields.last_name}
-					onChange={( newValue: string ) => {
-						updateFields( { last_name: newValue } );
+					onChange={(newValue: string) => {
+						updateFields({ last_name: newValue });
+					}}
+				/>
+
+				<TextControl
+					label="Pronouns"
+					name="pronouns"
+					value={fields.pronouns}
+					onChange={(newValue: string) => {
+						updateFields({ pronouns: newValue });
 					}}
 				/>
 
@@ -27,8 +36,8 @@ export const CounselorsMeta = ( { fields, updateFields }: MetaFormProps ) => (
 					label="Job Title"
 					name="job_title"
 					value={fields.job_title}
-					onChange={( newValue: string ) => {
-						updateFields( { job_title: newValue } );
+					onChange={(newValue: string) => {
+						updateFields({ job_title: newValue });
 					}}
 				/>
 
@@ -38,8 +47,8 @@ export const CounselorsMeta = ( { fields, updateFields }: MetaFormProps ) => (
 					type="tel"
 					value={fields.phone}
 					required
-					onChange={( newValue: string ) => {
-						updateFields( { phone: newValue } );
+					onChange={(newValue: string) => {
+						updateFields({ phone: newValue });
 					}}
 				/>
 
@@ -48,8 +57,8 @@ export const CounselorsMeta = ( { fields, updateFields }: MetaFormProps ) => (
 					name="email"
 					type="email"
 					value={fields.email}
-					onChange={( newValue: string ) => {
-						updateFields( { email: newValue } );
+					onChange={(newValue: string) => {
+						updateFields({ email: newValue });
 					}}
 				/>
 
@@ -57,8 +66,8 @@ export const CounselorsMeta = ( { fields, updateFields }: MetaFormProps ) => (
 					label="Regional representative?"
 					name="regional_representative"
 					checked={fields.regional_representative}
-					onChange={( newValue: boolean ) => {
-						updateFields( { regional_representative: newValue } );
+					onChange={(newValue: boolean) => {
+						updateFields({ regional_representative: newValue });
 					}}
 				/>
 			</PanelBody>

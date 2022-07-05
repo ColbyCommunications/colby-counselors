@@ -20,6 +20,7 @@
 		<h2 class="counselor-font-bold counselor-text-2xl">
 			<?php colby_counselors_the_meta_field( 'first_name' ); ?>
 			<?php colby_counselors_the_meta_field( 'last_name' ); ?>
+			<span class="counselor-text-lg font-normal"><?php colby_counselors_the_meta_field( 'pronouns' ); ?></span>
 		</h2>
 		<h3 class="counselor-text-lg counselor-mb-2" style="color: #273057">
 			<?php colby_counselors_the_meta_field( 'job_title' ); ?>

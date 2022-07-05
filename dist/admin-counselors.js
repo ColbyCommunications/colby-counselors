@@ -37862,6 +37862,15 @@ exports.CounselorsMeta = function (_a) {
       });
     }
   }), React.createElement(components_1.TextControl, {
+    label: "Pronouns",
+    name: "pronouns",
+    value: fields.pronouns,
+    onChange: function onChange(newValue) {
+      updateFields({
+        pronouns: newValue
+      });
+    }
+  }), React.createElement(components_1.TextControl, {
     label: "Job Title",
     name: "job_title",
     value: fields.job_title,

@@ -37,6 +37,13 @@ final class Counselors_Post_Type extends Post_Type {
 	 */
 	const LAST_NAME_META_KEY = 'last_name';
 
+		/**
+	 * Last name meta key.
+	 *
+	 * @var string
+	 */
+	const PRONOUNS_META_KEY = 'pronouns';
+
 	/**
 	 * Phone meta key.
 	 *
@@ -73,6 +80,7 @@ final class Counselors_Post_Type extends Post_Type {
 	const STRING_META_FIELDS = [
 		self::FIRST_NAME_META_KEY,
 		self::LAST_NAME_META_KEY,
+		self::PRONOUNS_META_KEY,
 		self::JOB_TITLE_META_KEY,
 		self::PHONE_META_KEY,
 		self::EMAIL_META_KEY,

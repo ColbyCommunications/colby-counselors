@@ -7,7 +7,7 @@
 
 ?>
 
-<article class="counselor-grid counselor-grid-cols-12 counselor-gap-4 counselor-p-8 counselor-border-b">
+<article class="counselor-grid counselor-grid-cols-12 counselor-gap-4 py-8 counselor-border-b">
 
 	<?php if ( has_post_thumbnail() ) : ?>
 		

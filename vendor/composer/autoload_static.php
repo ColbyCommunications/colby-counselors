@@ -11,9 +11,14 @@ class ComposerStaticInitd24ba7633efa333300059bbbc62c8670
         'fe6a73718b86f419d4e88690e7d36e35' => __DIR__ . '/..' . '/johnwatkins0/wp-singleton/wp-singleton.php',
     );
 
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->classMap = ComposerStaticInitd24ba7633efa333300059bbbc62c8670::$classMap;
 
         }, null, ClassLoader::class);
     }

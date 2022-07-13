@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9d8f96f2905b34f0ced5baa69cebcff",
+    "content-hash": "fe320cb1a404145f73a9413751ac560a",
     "packages": [
         {
             "name": "johnwatkins0/wp-autoload",
@@ -196,8 +196,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.1.0"
+        "php": "^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

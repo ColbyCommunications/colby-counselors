@@ -37,8 +37,12 @@
 		</div>
 		<?php if ( has_term( '', Colby_Counselors\Territories_Taxonomy::NAME ) ) : ?>
 			<div class="">
-				<span class="counselor-font-bold">Territories: </span>
-				<?php colby_counselors_the_territory_list(); ?>
+				<span class="counselor-font-bold">International: </span>
+				<?php echo colby_counselors_the_territory_list()["international"]; ?>
+			</div>
+			<div class="">
+				<span class="counselor-font-bold">Domestic: </span>
+				<?php echo colby_counselors_the_territory_list()["domestic"]; ?>
 			</div>
 		<?php endif; ?>
 	</div>

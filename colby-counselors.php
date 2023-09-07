@@ -186,23 +186,47 @@ function colby_counselors_the_meta_field( string $key ) : void {
 /**
  * Echoes the territory list for a post.
  *
- * @return void
+ * @return array
  */
-function colby_counselors_the_territory_list() : void {
+function colby_counselors_the_territory_list() {
 	$terms = get_the_terms( get_the_ID(), Colby_Counselors\Territories_Taxonomy::NAME );
 
 	if ( is_wp_error( $terms ) ) {
 		return;
 	}
 
-	$term_names = array_map(
+	$international = [];
+	$domestic = [];
+
+	for ($i = 0; $i < count($terms); $i++) {
+		$ancestor_cat_ids = get_ancestors($terms[$i]->term_id, "territories");
+		$highest_ancestor = $ancestor_cat_ids[count($ancestor_cat_ids) - 1];
+		// hardcoded values here!
+		if ($highest_ancestor === 46) {
+			$international[] = $terms[$i];
+		} else {
+			$domestic[] = $terms[$i];
+		}
+	}
+
+	// 41 - US
+	// 46 - International
+
+	$term_names_d = array_map(
 		function( WP_Term $term ) {
 			return $term->name;
 		},
-		$terms
+		$domestic
 	);
 
-	echo esc_html( implode( ', ', $term_names ) );
+	$term_names_i = array_map(
+		function( WP_Term $term ) {
+			return $term->name;
+		},
+		$international
+	);
+
+	return ["international" => esc_html( implode( ', ', $term_names_i )), "domestic" => esc_html( implode( ', ', $term_names_d ))];
 }
 
 /**

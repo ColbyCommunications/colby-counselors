@@ -1,32 +1,66 @@
 <?php
 /**
- * Counselors_Post_Typepost type archive
+ * Counselors_Post_Type post type archive
  *
  * @package Colby/Counselors
  */
 
 get_header();
-if ( have_posts() ) : ?>
 
-<main class="colby-counselors-main main container mx-auto px-container mt-8 md:mt-8 lg:mt-16" id="main">
+if ( have_posts() ) :
 
-	<h1 class="text-3xl font-bold" style="color: #273057"><?php colby_counselors_archive_title(); ?></h1>
-	<p class="mt-6">For general inquiries, please reach out to (207) 859-4800 or <a href="mailto:admissions@colby.edu" class="underline" style="color: #002878;">admissions@colby.edu</a>. For financial aid inquiries, please reach out to (207) 859-4830 or <a href="mailto:finaid@colby.edu" class="underline" style="color: #002878;">finaid@colby.edu</a>. To connect with your admissions counselor, use the search bar available on this page.</p>
-	<div id="colby-counselors-territory-picker"></div>
+    // Retrieve the territory from the URL, default to 'All' if not present or if empty
+    $territory = (!empty($_GET['territories'])) ? sanitize_text_field($_GET['territories']) : 'all counselors';
 
-	<?php if ( is_archive() ) : ?>
-		<?php include_once 'territory-picker.php'; ?>
-	<?php endif; ?>
+    // Define custom formatting for specific territories
+    $custom_territories = [
+        'mid-atlantic' => 'Mid-Atlantic',
+        'midwest-west' => 'Mid-West and West',
+    ];
 
-	<?php while ( have_posts() ) : ?>
+    // Format the territory name: first check custom mappings, then apply default formatting
+    $territory_key = strtolower(str_replace(' ', '-', $territory)); // Convert to lowercase and replace spaces with hyphens
+    if (array_key_exists($territory_key, $custom_territories)) {
+        $territory_display = $custom_territories[$territory_key];
+    } else {
+        $territory_display = ucwords(str_replace('-', ' ', $territory));
+    }
 
-		<?php the_post(); ?>
+    ?>
 
-		<?php include sprintf( 'article-%s.php', get_post_type() ); ?>
+    <main class="colby-counselors-main main container mx-auto mt-8 md:mt-8 lg:mt-16" id="main">
 
-	<?php endwhile; ?>
+        <h1 class="px-container mb-4 py-2 text-3xl counselor-font-bold" style="background-color: #022168; color: #FFFF"><?php colby_counselors_archive_title(); ?></h1>
+        <p class="px-container">For general inquiries, please reach out to (207) 859-4800 or <a href="mailto:admissions@colby.edu" style="color: #062da1">admissions@colby.edu.</a> For financial aid inquiries, please reach out
+            to (207) 859-4830 or <a href="mailto:finaid@colby.edu" style="color: #062da1">finaid@colby.edu</a>. </p>
+        <div id="colby-counselors-territory-picker"></div>
 
-</main>
-	<?php
+        <?php include_once 'highlight.php'; ?>
+
+        <?php if ( is_archive() ) : ?>
+            <?php include_once 'territory-picker.php'; ?>
+        <?php endif; ?>
+
+        <div class="px-container text-left">
+            <h2 class="inline-block px-2 counselor-font-bold py-2 text-white text-3xl" style="background-color: #022168;">
+                <?php echo $territory_display; ?>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2">
+            <?php while ( have_posts() ) : ?>
+                <?php the_post(); ?>
+                
+                <?php
+                $highlight_meta = get_post_meta( get_the_ID(), 'highlight', true );
+                if ( empty( $highlight_meta ) ) :
+                    include sprintf( 'article-%s.php', get_post_type() );
+                endif;
+                ?>
+            <?php endwhile; ?>
+        </div>
+
+    </main>
+    <?php
 endif;
 get_footer();

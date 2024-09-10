@@ -7,42 +7,35 @@
 
 ?>
 
-<article class="counselor-grid counselor-grid-cols-12 counselor-gap-4 py-8 counselor-border-b">
+<article class="px-container py-8 counselor-border-b grid grid-cols-1 lg:grid-cols-2">
 
+<div>
 	<?php if ( has_post_thumbnail() ) : ?>
 		
-		<div class="counselor-col-span-12 laptop:counselor-col-span-2 counselor-mb-4 laptop:counselor-mb-0" >
+	<img>
 			<?php the_post_thumbnail( 'medium'); ?>
-		</div>
+	</img>
 	<?php endif; ?>
+</div>
 
-	<div class="counselor-col-span-12 laptop:counselor-col-span-8">
-		<h2 class="counselor-font-bold counselor-text-2xl">
+	<div class="pl-2 counselor-text-sm lg:counselor-text-large">
+		<h2 class="counselor-font-bold">
 			<?php colby_counselors_the_meta_field( 'first_name' ); ?>
 			<?php colby_counselors_the_meta_field( 'last_name' ); ?>
-			<span class="counselor-text-lg font-normal"><?php colby_counselors_the_meta_field( 'pronouns' ); ?></span>
 		</h2>
-		<h3 class="counselor-text-lg counselor-mb-2" style="color: #273057">
+		<p class="mb-4 font-normal"><?php colby_counselors_the_meta_field( 'pronouns' ); ?></p>
+		<h3 class="" style="color: #273057">
 			<?php colby_counselors_the_meta_field( 'job_title' ); ?>
 		</h3>
-		<div class="counselor-mb-4">
-			<p>
-				<a style="color: #273057" href="mailto:<?php colby_counselors_the_meta_field( 'email' ); ?>">
-					<?php colby_counselors_the_meta_field( 'email' ); ?>
-				</a>
-			</p>
-			<p>
-				<?php colby_counselors_the_meta_field( 'phone' ); ?>
-			</p>
+		<div>
+		<p class=""><?php colby_counselors_the_meta_field( 'email' ); ?></p>
+		<p class=""><?php colby_counselors_the_meta_field( 'phone' ); ?></p>
 		</div>
 		<?php if ( has_term( '', Colby_Counselors\Territories_Taxonomy::NAME ) ) : ?>
 			<div class="">
-				<span class="counselor-font-bold">Domestic: </span>
-				<?php echo colby_counselors_the_territory_list()["domestic"]; ?>
-			</div>
-			<div class="">
-				<span class="counselor-font-bold">International: </span>
-				<?php echo colby_counselors_the_territory_list()["international"]; ?>
+				<p class="counselor-font-bold">Primary Contact:
+					<span class="font-normal"><?php echo colby_counselors_the_territory_list()["domestic"]; ?></span>
+				</p>
 			</div>
 		<?php endif; ?>
 	</div>

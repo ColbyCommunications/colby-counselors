@@ -104,6 +104,60 @@ function colby_counselors_get_territories( $parent ) {
 	return $terms;
 }
 
+function colby_counselors_get_regions( $parent ) {
+    // Get the parent term by name
+    $parent_term = get_term_by( 'name', $parent, Colby_Counselors\Territories_Taxonomy::NAME );
+
+    // If the parent term doesn't exist, return an empty array
+    if ( empty( $parent_term ) || is_wp_error( $parent_term ) ) {
+        return [];
+    }
+
+    // Get the child terms of the parent term
+    $terms = get_terms(
+        array(
+            'taxonomy'   => Colby_Counselors\Territories_Taxonomy::NAME,
+            'parent'     => $parent_term->term_id,
+            'hide_empty' => false, // Include terms even if they have no posts
+        )
+    );
+
+    // Filter terms if on an archive page
+    if ( is_archive() ) {
+        $post_type = get_query_var( 'post_type' );
+
+        $terms = array_filter(
+            $terms,
+            function( WP_Term $term ) use ( $post_type ) {
+                $query = new WP_Query(
+                    [
+                        'post_type' => $post_type,
+                        'tax_query' => [
+                            [
+                                'taxonomy' => Colby_Counselors\Territories_Taxonomy::NAME,
+                                'terms'    => $term->term_id,
+                            ],
+                        ],
+                    ]
+                );
+
+                return ! is_wp_error( $query ) && $query->have_posts();
+            }
+        );
+    }
+
+    // Sort the terms alphabetically by name
+    usort(
+        $terms,
+        function( $a, $b ) {
+            return strcmp( $a->name, $b->name );
+        }
+    );
+
+    return $terms;
+}
+
+
 /**
  * Returns global category terms sorted by name.
  *
@@ -120,6 +174,10 @@ function colby_counselors_get_global_territories() {
  */
 function colby_counselors_get_us_territories() {
 	return colby_counselors_get_territories( 'U.S.' );
+}
+
+function colby_counselors_get_us_regions() {
+	return colby_counselors_get_regions( 'U.S.' );
 }
 
 
@@ -236,7 +294,7 @@ function colby_counselors_the_territory_list() {
  */
 function colby_counselors_archive_title() : void {
 	if ( Colby_Counselors\Counselors_Post_Type::NAME === get_query_var( 'post_type' ) ) {
-		$value = __( 'Meet Your Counselor', 'colby-counselors' );
+		$value = __( 'Meet Our Team', 'colby-counselors' );
 	} 
 	// else {
 	// 	$value = __( 'Colby Counselor Events', 'colby-counselors' );
@@ -244,3 +302,4 @@ function colby_counselors_archive_title() : void {
 
 	echo esc_html( $value );
 }
+

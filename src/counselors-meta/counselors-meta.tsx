@@ -70,6 +70,15 @@ export const CounselorsMeta = ({ fields, updateFields }: MetaFormProps) => (
 						updateFields({ regional_representative: newValue });
 					}}
 				/>
+
+				<CheckboxControl
+					label="Highlight?"
+					name="highlight"
+					checked={fields.highlight}
+					onChange={(newValue: boolean) => {
+						updateFields({ highlight: newValue });
+					}}
+				/>
 			</PanelBody>
 		</Panel>
 	</div>

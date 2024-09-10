@@ -37909,6 +37909,15 @@ exports.CounselorsMeta = function (_a) {
         regional_representative: newValue
       });
     }
+  }), React.createElement(components_1.CheckboxControl, {
+    label: "Highlight?",
+    name: "highlight",
+    checked: fields.highlight,
+    onChange: function onChange(newValue) {
+      updateFields({
+        highlight: newValue
+      });
+    }
   }))));
 };
 

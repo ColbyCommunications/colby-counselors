@@ -3,7 +3,7 @@
         'name' => 'colbycommunications/colby-counselors',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '9bd3df939f860644d514ab0f2d72025b3e61ccc0',
+        'reference' => 'fffc52b87e7a95f141d94085c0a82ca3955e8de5',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'colbycommunications/colby-counselors' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '9bd3df939f860644d514ab0f2d72025b3e61ccc0',
+            'reference' => 'fffc52b87e7a95f141d94085c0a82ca3955e8de5',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

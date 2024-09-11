@@ -16,7 +16,7 @@ $highlight_query = new WP_Query( $query_args );
 
 if ( $highlight_query->have_posts() ) : ?>
 
-    <div class="grid grid-cols-2">
+    <div class="counselor-grid counselor-grid-cols-1 md:counselor-grid-cols-2">
         <?php while ( $highlight_query->have_posts() ) : $highlight_query->the_post(); ?>
 
             <?php include sprintf( 'article-%s.php', get_post_type() ); ?>

@@ -47,7 +47,7 @@ if ( have_posts() ) :
             </h2>
         </div>
 
-        <div class="grid grid-cols-2">
+        <div class="counselor-grid counselor-grid-cols-1 md:counselor-grid-cols-2">
             <?php while ( have_posts() ) : ?>
                 <?php the_post(); ?>
                 

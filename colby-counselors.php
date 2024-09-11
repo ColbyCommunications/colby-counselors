@@ -303,3 +303,17 @@ function colby_counselors_archive_title() : void {
 	echo esc_html( $value );
 }
 
+function enqueue_custom_scripts() {
+    // Get the dimensions of the 'medium' size thumbnail
+    $medium_size = get_option('thumbnail_size_w'); // Default width
+    $medium_height = get_option('thumbnail_size_h'); // Default height
+
+    // Pass the dimensions to JavaScript
+    wp_localize_script('your-script-handle', 'thumbnailData', array(
+        'width' => $medium_size,
+        'height' => $medium_height,
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+

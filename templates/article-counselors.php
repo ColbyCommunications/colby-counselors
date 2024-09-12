@@ -15,8 +15,8 @@
             <?php the_post_thumbnail( 'medium' ); ?>
         </img>
     <?php else : ?>
-        <div class="block w-auto flex justify-center items-center" style="background-color: #e4e8ef; max-width: 300px;">
-            <img class="h-full max-width: 300px;" src="<?php echo plugins_url( '../src/assets/placeholder.svg', __FILE__ ); ?>" alt="Placeholder Image" class="max-w-full max-h-full">
+        <div class="lg:counselor-h-full counselor-h-72 counselor-w-72 md:counselor-w-auto counselor-block  counselor-flex counselor-justify-center counselor-items-center" style="background-color: #e4e8ef;">
+            <img class="counselor-h-full counselor-w-3/5" src="<?php echo plugins_url( '../src/assets/placeholder.svg', __FILE__ ); ?>" alt="Placeholder Image" class="max-w-full max-h-full">
         </div>
     <?php endif; ?>
 </div>
@@ -24,16 +24,16 @@
 
 
 	<div class="lg:counselor-pl-2 md:text-md">
-		<h2 class="counselor-font-bold">
+		<h4 class="counselor-font-bold counselor-text-lg">
 			<?php colby_counselors_the_meta_field( 'first_name' ); ?>
 			<?php colby_counselors_the_meta_field( 'last_name' ); ?>
-		</h2>
+		</h4>
 		<p class="mb-4 font-normal"><?php colby_counselors_the_meta_field( 'pronouns' ); ?></p>
-		<h3 class="" style="color: #273057">
+		<p class="" style="color: #273057">
 			<?php colby_counselors_the_meta_field( 'job_title' ); ?>
-		</h3>
+		</p>
 		<div>
-		<p class=""><?php colby_counselors_the_meta_field( 'email' ); ?></p>
+		<p class=""><a style="color: #062da1" href="mailto:<?php colby_counselors_the_meta_field( 'email' ); ?>"><?php colby_counselors_the_meta_field( 'email' ); ?></a></p>
 		<p class=""><?php colby_counselors_the_meta_field( 'phone' ); ?></p>
 		</div>
 		<?php if ( has_term( '', Colby_Counselors\Territories_Taxonomy::NAME ) ) : ?>

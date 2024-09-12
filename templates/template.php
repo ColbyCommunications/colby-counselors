@@ -27,10 +27,10 @@ if ( have_posts() ) :
     }
 
     ?>
+    <div style="background-color: #022168;"><h1 class="mx-auto px-container container mb-4 py-2 text-3xl counselor-font-bold" style=" color: #FFFF"><?php colby_counselors_archive_title(); ?></h1></div>
 
     <main class="colby-counselors-main main container mx-auto mt-8 md:mt-8 lg:mt-16" id="main">
 
-        <h1 class="px-container mb-4 py-2 text-3xl counselor-font-bold" style="background-color: #022168; color: #FFFF"><?php colby_counselors_archive_title(); ?></h1>
         <p class="px-container">For general inquiries, please reach out to (207) 859-4800 or <a href="mailto:admissions@colby.edu" style="color: #062da1">admissions@colby.edu.</a> For financial aid inquiries, please reach out
             to (207) 859-4830 or <a href="mailto:finaid@colby.edu" style="color: #062da1">finaid@colby.edu</a>. </p>
         <div id="colby-counselors-territory-picker"></div>
@@ -42,9 +42,9 @@ if ( have_posts() ) :
         <?php endif; ?>
 
         <div class="px-container text-left">
-            <h2 class="inline-block px-2 counselor-font-bold py-2 text-white text-3xl" style="background-color: #022168;">
+            <h3 class="inline-block px-2 counselor-font-bold py-2 text-white text-2xl" style="background-color: #022168;">
                 <?php echo $territory_display; ?>
-            </h2>
+            </h3>
         </div>
 
         <div class="counselor-grid counselor-grid-cols-1 md:counselor-grid-cols-2">

@@ -43,8 +43,10 @@ map1.hooks.complete = function() {
 
 map1.hooks.back = function() {
 	const region = getUrlParameter('territories');
+	const currentUrl = window.location.href.split('?')[0];
+
 	if (map1.regions && map1.regions.hasOwnProperty(region)) {
-		const currentUrl = window.location.href.split('?')[0];
+		// Redirect immediately if region is found in map1.regions
 		window.location.href = currentUrl;
 	} else {
 		for (let state in map1.states) {
@@ -52,8 +54,9 @@ map1.hooks.back = function() {
 				let stateName = map1.states[state].sm.name.toLowerCase().replace(/\s+/g, '-');
 				// Check if transformed state name matches region
 				if (stateName === region) {
-					const currentUrl = window.location.href.split('?')[0];
-					window.location.href = `${currentUrl}/?territories=${map1.states[state].sm.region}`;
+					// Redirect only once, then exit loop
+					window.location.href = `${currentUrl}?territories=${map1.states[state].sm.region}`;
+					break;
 				}
 			}
 		}

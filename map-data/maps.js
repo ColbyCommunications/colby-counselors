@@ -8,6 +8,14 @@ function getUrlParameter(name) {
 	return urlParams.get(name);
 }
 
+// Function to scroll to the map container
+function scrollToMap() {
+	const mapContainer = document.getElementById('map1');
+	if (mapContainer) {
+		mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+	}
+}
+
 // Assign region once map1 completes its loading process
 map1.hooks.complete = function() {
 	console.log(map1);
@@ -20,6 +28,7 @@ map1.hooks.complete = function() {
 		if (map1.regions && map1.regions.hasOwnProperty(region)) {
 			console.log('Zooming to region:', region); // Log if region is found
 			map1.region_zoom(region); // Zoom to the specified region
+			scrollToMap(); // Scroll to the map after zooming
 		} else if (map1.states) {
 			// If region not found, look in states by iterating
 			for (let state in map1.states) {
@@ -29,6 +38,7 @@ map1.hooks.complete = function() {
 					if (stateName === region) {
 						console.log('Zooming to state:', state); // Log if state is found
 						map1.state_zoom(state); // Zoom using the state ID
+						scrollToMap(); // Scroll to the map after zooming
 						break;
 					}
 				}
@@ -61,4 +71,5 @@ map1.hooks.back = function() {
 			}
 		}
 	}
+	scrollToMap(); // Scroll back to the map after the interaction
 };

@@ -74,7 +74,7 @@ if ( have_posts() ) :
         <?php endif; ?>
 
         <div class="px-container text-left">
-            <h3 class="inline-block px-2 counselor-font-bold py-2 text-white text-2xl" style="background-color: #022168;">
+            <h3 class="inline-block px-2 counselor-font-bold py-2 text-white text-2xl uppercase" style="background-color: #022168;">
                 <?php echo $territory_display; ?>
             </h3>
         </div>

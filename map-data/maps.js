@@ -16,6 +16,9 @@ map1.hooks.complete = function() {
 
 	// Check if the region exists in map1.regions or map1.states.sm
 	if (region) {
+		if (region === 'dc') {
+			map1.state_zoom('DC');
+		}
 		// First, check if region matches directly in map1.regions
 		if (map1.regions && map1.regions.hasOwnProperty(region)) {
 			console.log('Zooming to region:', region); // Log if region is found

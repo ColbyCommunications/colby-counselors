@@ -38,7 +38,39 @@ if ( have_posts() ) :
         <?php include_once 'highlight.php'; ?>
 
         <?php if ( is_archive() ) : ?>
-            <?php include_once 'territory-picker.php'; ?>
+            <div class="mb-12 px-container">
+                <h2 class="mb-6 text-2xl font-bold" style="color: #052168;">Contacts by Region</h2>
+                <div x-data="{ tab: 'domestic' }">
+                    <div class="mb-6">
+                        <button 
+                            @click="tab = 'domestic'" 
+                            :class="{
+                                'counselor-bg-colbyBlue text-white': tab === 'domestic',
+                                'counselor-text-colbyBlue': tab !== 'domestic'
+                            }" 
+                            class="toggle-button counselor-mr-8 counselor-py-2 counselor-px-12 counselor-border counselor-border-gray-500 counselor-rounded counselor-font-medium">
+                            Domestic
+                        </button>
+                        
+                        <button 
+                            @click="tab = 'international'" 
+                            :class="{
+                                'counselor-bg-colbyBlue text-white': tab === 'international',
+                                'counselor-text-colbyBlue': tab !== 'international'
+                            }" 
+                            class="toggle-button counselor-py-2 counselor-px-12 counselor-border counselor-border-gray-500 counselor-rounded counselor-font-medium">
+                            International
+                        </button>
+                    </div>
+
+                    <div class="content">
+                        <div class="counselor-flex counselor-justify-center counselor-items-center">
+                            <div x-show="tab === 'domestic'" id="map1"></div>
+                            <div x-show="tab === 'international'" id="map2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php endif; ?>
 
         <div class="px-container text-left">

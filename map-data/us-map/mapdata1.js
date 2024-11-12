@@ -14,7 +14,7 @@ var simplemaps_usmap_mapdata = {
 		border_size: 1.5,
 		border_color: '#ffffff',
 		all_states_inactive: 'no',
-		all_states_zoomable: 'yes',
+		all_states_zoomable: 'no',
 
 		//Location defaults
 		location_description: 'Location description',
@@ -216,7 +216,7 @@ var simplemaps_usmap_mapdata = {
 			description: 'default',
 			color: 'default',
 			hover_color: 'default',
-			url: '/counselors/?territories=dc',
+			url: '/counselors/?territories=district-of-columbia',
 		},
 		MA: {
 			name: 'Massachusetts',
@@ -807,10 +807,12 @@ var simplemaps_usmap_mapdata = {
 		'mid-atlantic': {
 			name: 'Mid-Atlantic',
 			states: ['NY', 'NJ', 'PA'],
+			url: '/counselors/?territories=mid-atlantic',
 		},
 		midwest: {
 			name: 'Midwest',
 			states: ['IL', 'IN', 'IA', 'KS', 'MI', 'MN', 'MO', 'NE', 'ND', 'OH', 'SD', 'WI'],
+			url: '/counselors/?territories=midwest',
 		},
 		south: {
 			name: 'South',
@@ -833,10 +835,12 @@ var simplemaps_usmap_mapdata = {
 				'VA',
 				'WV',
 			],
+			url: '/counselors/?territories=south',
 		},
 		west: {
 			name: 'West',
 			states: ['CO', 'NM', 'AZ', 'AK', 'HI', 'ID', 'MT', 'NV', 'UT', 'WY', 'WA', 'OR', 'CA'],
+			url: '/counselors/?territories=west',
 		},
 	},
 };

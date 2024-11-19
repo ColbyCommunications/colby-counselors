@@ -143,13 +143,12 @@ if ( have_posts() ) :
                                         <p class="counselor-font-bold">Primary Contact:
                                             <span class="font-normal" 
                                                 x-show="counselor.terms && counselor.terms.territories && counselor.terms.territories.length > 0" 
-                                                x-text="counselor.terms.territories
-                                                            .filter(territory => 
+                                                x-text="counselor.terms.territories 
+                                                        ? counselor.terms.territories.filter(territory => 
                                                                 territory.grandparent && 
                                                                 territory.grandparent.slug === tab
-                                                            )
-                                                            .map(territory => territory.name)
-                                                            .join(', ')">
+                                                            ).map(territory => territory.name).join(', ') 
+                                                        : ''">
                                             </span>
                                         </p>
                                     </div>

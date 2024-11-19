@@ -124,6 +124,7 @@ if ( have_posts() ) :
                 <template x-if="filteredCounselors.length > 0">
                     <div>
                         <template x-for="counselor in filteredCounselors" :key="counselor.id">
+                            <template x-if="!counselor.meta.highlight">
                             <article class="px-container py-8 counselor-grid md:counselor-grid-cols-1 lg:counselor-grid-cols-2">
                                 <div class="counselor-mb-2 lg:counselor-mb-0">
                                     <img :src="counselor.meta.photo" alt="Counselor photo" class="counselor-photo" />
@@ -154,6 +155,7 @@ if ( have_posts() ) :
                                     </div>
                                 </div>
                             </article>
+                            </template>
                         </template>
                     </div>
                 </template>

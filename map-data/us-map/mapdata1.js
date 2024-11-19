@@ -802,17 +802,17 @@ var simplemaps_usmap_mapdata = {
 		'new-england': {
 			name: 'New England',
 			states: ['ME', 'NH', 'VT', 'MA', 'CT', 'RI'],
-			url: '/counselors/?territories=new-england',
+			url: "javascript:clickRegion('new-england')",
 		},
 		'mid-atlantic': {
 			name: 'Mid-Atlantic',
 			states: ['NY', 'NJ', 'PA'],
-			url: '/counselors/?territories=mid-atlantic',
+			url: "javascript:clickRegion('mid-atlantic')",
 		},
 		midwest: {
 			name: 'Midwest',
 			states: ['IL', 'IN', 'IA', 'KS', 'MI', 'MN', 'MO', 'NE', 'ND', 'OH', 'SD', 'WI'],
-			url: '/counselors/?territories=midwest',
+			url: "javascript:clickRegion('midwest')",
 		},
 		south: {
 			name: 'South',
@@ -835,12 +835,12 @@ var simplemaps_usmap_mapdata = {
 				'VA',
 				'WV',
 			],
-			url: '/counselors/?territories=south',
+			url: "javascript:clickRegion('south')",
 		},
 		west: {
 			name: 'West',
 			states: ['CO', 'NM', 'AZ', 'AK', 'HI', 'ID', 'MT', 'NV', 'UT', 'WY', 'WA', 'OR', 'CA'],
-			url: '/counselors/?territories=west',
+			url: "javascript:clickRegion('west')",
 		},
 	},
 };

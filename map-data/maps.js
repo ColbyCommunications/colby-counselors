@@ -2,74 +2,22 @@
 var map1 = simplemaps_usmap.create();
 var map2 = simplemaps_worldmap.create();
 
-// Function to get URL parameter by name
-function getUrlParameter(name) {
-	const urlParams = new URLSearchParams(window.location.search);
-	return urlParams.get(name);
-}
-
-// Function to scroll to the map container
-function scrollToMap() {
-	const mapContainer = document.getElementById('map1');
-	if (mapContainer) {
-		mapContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-	}
-}
-
-// Assign region once map1 completes its loading process
-map1.hooks.complete = function() {
-	console.log(map1);
-	const region = getUrlParameter('territories'); // Get the 'territories' parameter from URL
-	console.log('Region parameter:', region); // Log the region parameter for debugging
-
-	// Check if the region exists in map1.regions or map1.states.sm
-	if (region) {
-		// First, check if region matches directly in map1.regions
-		if (map1.regions && map1.regions.hasOwnProperty(region)) {
-			console.log('Zooming to region:', region); // Log if region is found
-			map1.region_zoom(region); // Zoom to the specified region
-			scrollToMap(); // Scroll to the map after zooming
-		} else if (map1.states) {
-			// If region not found, look in states by iterating
-			for (let state in map1.states) {
-				if (map1.states.hasOwnProperty(state)) {
-					let stateName = map1.states[state].sm.name.toLowerCase().replace(/\s+/g, '-');
-					// Check if transformed state name matches region
-					if (stateName === region) {
-						console.log('Zooming to state:', state); // Log if state is found
-						map1.state_zoom(state); // Zoom using the state ID
-						scrollToMap(); // Scroll to the map after zooming
-						break;
-					}
-				}
-			}
-		} else {
-			console.warn('States data not found in map1.');
-		}
-	} else {
-		console.warn('Region parameter not found in URL.');
-	}
+const updateRegionInAlpine = (region) => {
+	const event = new CustomEvent('regionUpdated', {
+		detail: region,
+	});
+	window.dispatchEvent(event);
 };
 
-map1.hooks.back = function() {
-	const region = getUrlParameter('territories');
-	const currentUrl = window.location.href.split('?')[0];
+const clickRegion = (region) => {
+	console.log(`Zooming to: ${region}`);
+	map1.region_zoom(region); // Zooming in on the map
 
-	if (map1.regions && map1.regions.hasOwnProperty(region)) {
-		// Redirect immediately if region is found in map1.regions
-		window.location.href = currentUrl;
-	} else {
-		for (let state in map1.states) {
-			if (map1.states.hasOwnProperty(state)) {
-				let stateName = map1.states[state].sm.name.toLowerCase().replace(/\s+/g, '-');
-				// Check if transformed state name matches region
-				if (stateName === region) {
-					// Redirect only once, then exit loop
-					window.location.href = `${currentUrl}?territories=${map1.states[state].sm.region}`;
-					break;
-				}
-			}
-		}
-	}
-	scrollToMap(); // Scroll back to the map after the interaction
+	// Update the URL with the selected region
+	const currentUrl = new URL(window.location.href);
+	currentUrl.searchParams.set('territories', region);
+	window.history.pushState({}, '', currentUrl.toString());
+
+	// Dispatch event to update Alpine region data
+	updateRegionInAlpine(region);
 };

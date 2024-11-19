@@ -316,18 +316,6 @@ function enqueue_custom_scripts() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
-// function add_alpinejs() {
-//     // Enqueue Alpine.js from a CDN (e.g., the latest version from the official CDN)
-//     wp_enqueue_script(
-//         'alpinejs',
-//         'https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js',
-//         [],
-//         null,
-//         false
-//     );
-// }
-// add_action('wp_enqueue_scripts', 'add_alpinejs');
-
 function add_alpine() {
     echo '<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>';
 }
@@ -373,6 +361,102 @@ function enqueue_map_scripts() {
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_map_scripts');
+
+function register_counselors_rest_route() {
+    register_rest_route('counselors/v1', '/counselors', [
+        'methods' => 'GET',
+        'callback' => 'get_counselors_data',
+        'permission_callback' => '__return_true',
+    ]);
+}
+add_action('rest_api_init', 'register_counselors_rest_route');
+
+function get_counselors_data(WP_REST_Request $request) {
+    $args = [
+        'post_type' => 'counselors',
+        'posts_per_page' => -1,
+    ];
+
+    $query = new WP_Query($args);
+    $counselors = [];
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $post_id = get_the_ID();
+
+            $taxonomies = ['territories'];
+            $terms = [];
+
+            foreach ($taxonomies as $taxonomy) {
+                $taxonomy_terms = wp_get_post_terms($post_id, $taxonomy, ['fields' => 'all']);
+                if (!empty($taxonomy_terms) && !is_wp_error($taxonomy_terms)) {
+                    $terms[$taxonomy] = array_map(function ($term) {
+
+                        // Get the immediate parent term
+                        $parent = ($term->parent) ? get_term($term->parent) : null;
+                        
+                        // Get the grandparent term if the parent exists
+                        $grandparent = ($parent && $parent->parent) ? get_term($parent->parent) : null;
+
+                        // Return the term data with both parent and grandparent
+                        return [
+                            'id' => $term->term_id,
+                            'name' => $term->name,
+                            'slug' => $term->slug,
+                            'taxonomy' => $term->taxonomy,
+                            'description' => $term->description,
+                            'parent' => $parent ? [
+                                'id' => $parent->term_id,
+                                'name' => $parent->name,
+                                'slug' => $parent->slug,
+                                'taxonomy' => $parent->taxonomy,
+                                'description' => $parent->description,
+                            ] : null,
+                            'grandparent' => $grandparent ? [
+                                'id' => $grandparent->term_id,
+                                'name' => $grandparent->name,
+                                'slug' => $grandparent->slug,
+                                'taxonomy' => $grandparent->taxonomy,
+                                'description' => $grandparent->description,
+                            ] : null,
+                        ];
+                    }, $taxonomy_terms);
+                }
+            }
+
+            $counselors[] = [
+                'id' => $post_id,
+                'title' => get_the_title(),
+                'content' => apply_filters('the_content', get_the_content()),
+                'excerpt' => get_the_excerpt(),
+                'date' => get_the_date(),
+                'modified' => get_the_modified_date(),
+                'author' => get_the_author(),
+                'slug' => get_post_field('post_name', $post_id),
+                'thumbnail' => get_the_post_thumbnail_url($post_id, 'full'),
+                'permalink' => get_permalink(),
+                'meta' => get_post_meta($post_id),
+                'terms' => $terms,
+            ];
+        }
+        wp_reset_postdata();
+    }
+
+    // Sort counselors by last name (assuming 'last_name' is stored in 'meta')
+    usort($counselors, function ($a, $b) {
+        // Extract last names from meta fields
+        $last_name_a = isset($a['meta']['last_name']) ? $a['meta']['last_name'][0] : '';
+        $last_name_b = isset($b['meta']['last_name']) ? $b['meta']['last_name'][0] : '';
+
+        // Compare last names alphabetically
+        return strcmp($last_name_a, $last_name_b);
+    });
+
+    return rest_ensure_response($counselors);
+}
+
+
 
 
 

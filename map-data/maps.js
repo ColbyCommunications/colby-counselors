@@ -21,3 +21,16 @@ const clickRegion = (region) => {
 	// Dispatch event to update Alpine region data
 	updateRegionInAlpine(region);
 };
+
+const clickState = (state) => {
+	console.log(`Zooming to: ${state.slug}`);
+	map1.state_zoom(state.abbreviation); // Zooming in on the map
+
+	// Update the URL with the selected region
+	const currentUrl = new URL(window.location.href);
+	currentUrl.searchParams.set('territories', state.slug);
+	window.history.pushState({}, '', currentUrl.toString());
+
+	// Dispatch event to update Alpine region data
+	updateRegionInAlpine(state.slug);
+};

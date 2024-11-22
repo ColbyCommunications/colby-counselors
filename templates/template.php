@@ -19,27 +19,23 @@ if ( have_posts() ) :
                 counselors: [],
                 filteredCounselors: [],
                 loading: true,
-                displayText: 'All Counselors',
+                displayText: '',
                 region: '',
                 init() {
                     window.addEventListener('regionUpdated', (event) => {
                         this.region = event.detail;
-                        console.log(`Region updated from external JS: ${this.region}`);
                         this.fetchCounselors();
                         this.displayText = this.region;
+                        this.zoomLevel = map1.zoom_level_id;
                     });
                 },
 
                 async fetchCounselors() {
-                console.log('1');
                     try {
                         const response = await fetch('https://colby-admissions-production.lndo.site/wp-json/counselors/v1/counselors');
                         const data = await response.json();
-                        console.log('Counselors data:', data); // Log the data to check
                         this.counselors = data;
-                        console.log(this.filteredCounselors);
                         this.filteredCounselors = this.filterCounselors(data, this.region); // Initial filtering
-                        console.log(`filtered counselors: ${this.filteredCounselors}`);
                     } catch (error) {
                         console.error('Error fetching counselors:', error);
                     } finally {
@@ -48,19 +44,23 @@ if ( have_posts() ) :
                 },
 
                 filterCounselors(counselors, region) {
-                    console.log(`counselors: ${counselors}`);
-                    console.log(`region: ${region}`);
-
                     if (!region) {
-                        console.log('No region selected');
                         return counselors;
                     } else {
-                        console.log(`You selected ${region}`);
                         return counselors.filter((counselor) => {
                             if (counselor.terms && Array.isArray(counselor.terms.territories)) {
                                 return counselor.terms.territories.some(territory => {
-                                    return territory.parent && territory.parent.slug === region;   
-                                })
+
+                                    if (territory.parent && territory.parent.slug === region) {
+                                        return true;
+                                    }
+
+                                    if (territory.slug === region) {
+                                        return true;
+                                    }
+
+                                    return false;
+                                });
                             }
                         });
                     }
@@ -111,25 +111,23 @@ if ( have_posts() ) :
         <?php endif; ?>
 
         <div class="px-container text-left">
-            <h3 class="inline-block px-2 counselor-font-bold py-2 text-white text-2xl" style="background-color: #022168;" x-text="displayText">
+            <h3 class="inline-block px-2 counselor-font-bold py-2 text-white text-2xl" style="background-color: #022168;" x-text="transformDisplayText(displayText)">
             </h3>
         </div>
 
-        <div class="counselor-grid counselor-grid-cols-1 md:counselor-grid-cols-2">
+        <div>
             <div
             class="counselor-list">
 
                 <div x-show="loading" class="loading">Loading counselors...</div>
 
                 <template x-if="filteredCounselors.length > 0">
-                    <div>
+                    <div class="counselor-grid counselor-grid-cols-1 md:counselor-grid-cols-2">
                         <template x-for="counselor in filteredCounselors" :key="counselor.id">
                             <template x-if="!counselor.meta.highlight">
                             <article class="px-container py-8 counselor-grid md:counselor-grid-cols-1 lg:counselor-grid-cols-2">
                                 <div class="counselor-mb-2 lg:counselor-mb-0">
-                                    <img :src="counselor.meta.photo" alt="Counselor photo" class="counselor-photo" />
-                                    
-                                    <div class="lg:counselor-h-full counselor-h-72 counselor-w-72 md:counselor-w-auto counselor-block  counselor-flex counselor-justify-center counselor-items-center" style="background-color: #e4e8ef;">
+                                    <img :src="counselor.thumbnail" alt="Counselor photo" class="counselor-photo" />
                                     </div>
                                 </div>
                                 <div class="lg:counselor-pl-2 md:text-md">

@@ -5,6 +5,9 @@ var map2 = simplemaps_worldmap.create();
 let currentState;
 let currentRegion;
 
+console.log(currentState);
+console.log(currentRegion);
+
 const updateRegionInAlpine = (region) => {
 	const event = new CustomEvent('regionUpdated', {
 		detail: region,

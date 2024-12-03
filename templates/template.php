@@ -20,13 +20,15 @@ if ( have_posts() ) :
                 filteredCounselors: [],
                 loading: true,
                 displayText: '',
-                region: '',
+                region: (() => {
+                    const params = new URLSearchParams(window.location.search);
+                    return params.get('territories') || '';
+                })(),
                 init() {
                     window.addEventListener('regionUpdated', (event) => {
                         this.region = event.detail;
                         this.fetchCounselors();
                         this.displayText = this.region;
-                        this.zoomLevel = map1.zoom_level_id;
                     });
                 },
 
@@ -80,7 +82,7 @@ if ( have_posts() ) :
                 <div>
                     <div class="mb-6">
                         <button 
-                            @click="tab = 'us'" 
+                            @click="tab = 'us'; console.log(tab)" 
                             :class="{
                                 'counselor-bg-colbyBlue text-white': tab === 'us',
                                 'counselor-text-colbyBlue': tab !== 'us'
@@ -90,7 +92,7 @@ if ( have_posts() ) :
                         </button>
                         
                         <button 
-                            @click="tab = 'international'" 
+                            @click="tab = 'international'; console.log(tab)" 
                             :class="{
                                 'counselor-bg-colbyBlue text-white': tab === 'international',
                                 'counselor-text-colbyBlue': tab !== 'international'

@@ -16,20 +16,41 @@ if ( have_posts() ) :
 
     <main class="colby-counselors-main main container mx-auto mt-8 md:mt-8 lg:mt-16" id="main" x-data="{
                 tab: 'us',
+                territory: '',
                 counselors: [],
                 filteredCounselors: [],
                 loading: true,
-                displayText: '',
-                region: (() => {
-                    const params = new URLSearchParams(window.location.search);
-                    return params.get('territories') || '';
-                })(),
                 init() {
+                    // set map click event listener
                     window.addEventListener('regionUpdated', (event) => {
-                        this.region = event.detail;
+                        this.territory = event.detail;
                         this.fetchCounselors();
-                        this.displayText = this.region;
                     });
+                    
+                    // process url params
+                    const currentUrl = new URL(window.location.href);
+                    const tabParam = currentUrl.searchParams.get('tab');
+                    const territoryParam = currentUrl.searchParams.get('territory');
+                    
+                    if (tabParam) {
+                        this.tab = tabParam;
+                    } else {
+                        this.setTab('us');
+                    }
+
+                    if (territoryParam) {
+                        this.territory = territoryParam;
+                        this.filterCounselors();
+                        
+                    }
+                    
+                },
+                
+                setTab(tab) {
+                    this.tab = tab;
+                    const currentUrl = new URL(window.location.href);
+                    currentUrl.searchParams.set('tab', tab);
+	                window.history.pushState({}, '', currentUrl.toString());
                 },
 
                 async fetchCounselors() {
@@ -37,7 +58,7 @@ if ( have_posts() ) :
                         const response = await fetch('https://colby-admissions-production.lndo.site/wp-json/counselors/v1/counselors');
                         const data = await response.json();
                         this.counselors = data;
-                        this.filteredCounselors = this.filterCounselors(data, this.region); // Initial filtering
+                        this.filteredCounselors = this.filterCounselors(data, this.territory); // Initial filtering
                     } catch (error) {
                         console.error('Error fetching counselors:', error);
                     } finally {
@@ -45,19 +66,20 @@ if ( have_posts() ) :
                     }
                 },
 
-                filterCounselors(counselors, region) {
-                    if (!region) {
-                        return counselors;
+                filterCounselors() {
+                    console.log(this.territory);
+                    if (!this.territory) {
+                        return this.counselors;
                     } else {
-                        return counselors.filter((counselor) => {
+                     const filteredCounselorList = this.counselors.filter((counselor) => {
                             if (counselor.terms && Array.isArray(counselor.terms.territories)) {
                                 return counselor.terms.territories.some(territory => {
 
-                                    if (territory.parent && territory.parent.slug === region) {
+                                    if (territory.parent && territory.parent.slug === this.territory) {
                                         return true;
                                     }
 
-                                    if (territory.slug === region) {
+                                    if (territory.slug === this.territory) {
                                         return true;
                                     }
 
@@ -65,8 +87,27 @@ if ( have_posts() ) :
                                 });
                             }
                         });
+                        map1.region_zoom(this.territory);
+                        return filteredCounselorList;
                     }
+                },
+
+                transformTerritoryName() {
+                    if (!this.territory) return 'All Counselors'; // Fallback for empty string
+
+
+                    // Special case for 'mid-atlantic'
+                    if (this.territory.toLowerCase() === 'mid-atlantic') {
+                        return 'Mid-Atlantic';
+                    }
+
+                    // Replace dashes with spaces, capitalize the first letter of each word
+                    return this.territory
+                        .split('-')
+                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
                 }
+
             }"
             x-init="fetchCounselors()">
 
@@ -82,7 +123,7 @@ if ( have_posts() ) :
                 <div>
                     <div class="mb-6">
                         <button 
-                            @click="tab = 'us'; console.log(tab)" 
+                            @click="setTab('us')" 
                             :class="{
                                 'counselor-bg-colbyBlue text-white': tab === 'us',
                                 'counselor-text-colbyBlue': tab !== 'us'
@@ -92,7 +133,7 @@ if ( have_posts() ) :
                         </button>
                         
                         <button 
-                            @click="tab = 'international'; console.log(tab)" 
+                            @click="setTab('international')"  
                             :class="{
                                 'counselor-bg-colbyBlue text-white': tab === 'international',
                                 'counselor-text-colbyBlue': tab !== 'international'
@@ -113,7 +154,7 @@ if ( have_posts() ) :
         <?php endif; ?>
 
         <div class="px-container text-left">
-            <h3 class="inline-block px-2 counselor-font-bold py-2 text-white text-2xl" style="background-color: #022168;" x-text="transformDisplayText(displayText)">
+            <h3 class="inline-block px-2 counselor-font-bold py-2 text-white text-2xl" style="background-color: #022168;" x-text="transformTerritoryName()">
             </h3>
         </div>
 

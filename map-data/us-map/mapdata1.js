@@ -88,7 +88,7 @@ var simplemaps_usmap_mapdata = {
 		},
 		FL: {
 			name: 'Florida',
-			description: 'default',
+			description: 'fdsafdsa fdsa fdsa fdsa fdsafdsafdsafdfdsa',
 			color: 'default',
 			hover_color: 'default',
 			url: "javascript:clickState({ abbreviation: 'FL', slug: 'florida' })",
@@ -434,7 +434,7 @@ var simplemaps_usmap_mapdata = {
 			color: 'default',
 			hover_color: 'default',
 			url: "javascript:clickState({ abbreviation: 'GU', slug: 'guam' })",
-			hide: 'yes',
+			hide: 'no',
 		},
 		VI: {
 			name: 'Virgin Islands',
@@ -442,7 +442,7 @@ var simplemaps_usmap_mapdata = {
 			color: 'default',
 			hover_color: 'default',
 			url: "javascript:clickState({ abbreviation: 'VI', slug: 'virgin-islands' })",
-			hide: 'yes',
+			hide: 'no',
 		},
 		PR: {
 			name: 'Puerto Rico',
@@ -450,7 +450,7 @@ var simplemaps_usmap_mapdata = {
 			color: 'default',
 			hover_color: 'default',
 			url: "javascript:clickState({ abbreviation: 'PR', slug: 'puerto-rico' })",
-			hide: 'yes',
+			hide: 'no',
 		},
 		AS: {
 			name: 'American Samoa',
@@ -458,7 +458,7 @@ var simplemaps_usmap_mapdata = {
 			color: 'default',
 			hover_color: 'default',
 			url: "javascript:clickState({ abbreviation: 'AS', slug: 'american-samoa' })",
-			hide: 'yes',
+			hide: 'no',
 		},
 		MP: {
 			name: 'Northern Mariana Islands',
@@ -466,7 +466,7 @@ var simplemaps_usmap_mapdata = {
 			color: 'default',
 			hover_color: 'default',
 			url: "javascript:clickState({ abbreviation: 'MP', slug: 'northern-mariana-islands' })",
-			hide: 'yes',
+			hide: 'no',
 		},
 	},
 	locations: {
@@ -841,6 +841,11 @@ var simplemaps_usmap_mapdata = {
 			name: 'West',
 			states: ['CO', 'NM', 'AZ', 'AK', 'HI', 'ID', 'MT', 'NV', 'UT', 'WY', 'WA', 'OR', 'CA'],
 			url: "javascript:clickRegion('west')",
+		},
+		'us-territories': {
+			name: 'US Territories',
+			states: ['GU', 'VI', 'PR', 'AS', 'MP'],
+			url: "javascript:clickRegion('us-territories')",
 		},
 	},
 };

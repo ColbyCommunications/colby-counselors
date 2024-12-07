@@ -26,7 +26,8 @@ if ( have_posts() ) :
                         this.territory = event.detail;
                         this.fetchCounselors();
                     });
-                    
+
+
                     // process url params
                     const currentUrl = new URL(window.location.href);
                     const tabParam = currentUrl.searchParams.get('tab');
@@ -34,23 +35,41 @@ if ( have_posts() ) :
                     
                     if (tabParam) {
                         this.tab = tabParam;
+                        window.activeTab = tabParam;
                     } else {
-                        this.setTab('us');
+                        window.activeTab = 'us';
+                        const currentUrl = new URL(window.location.href);
+                        currentUrl.searchParams.set('tab', 'us');
+                        currentUrl.searchParams.delete('territory');
+                        window.history.pushState({}, '', currentUrl.toString());
+                        
                     }
+                    window.dispatchEvent(setActiveMap);
 
                     if (territoryParam) {
                         this.territory = territoryParam;
                         this.filterCounselors();
-                        
+                        const eventZoom = new CustomEvent('mapZoom', {
+                            detail: territoryParam,
+                        });
+                        window.dispatchEvent(eventZoom);
                     }
                     
                 },
-                
+
                 setTab(tab) {
+
                     this.tab = tab;
+
+                    window.dispatchEvent(eventRefresh);
+                    
+                    this.territory = '';
                     const currentUrl = new URL(window.location.href);
                     currentUrl.searchParams.set('tab', tab);
+                    currentUrl.searchParams.delete('territory');
 	                window.history.pushState({}, '', currentUrl.toString());
+                    window.activeTab = tab;
+                    window.dispatchEvent(setActiveMap);
                 },
 
                 async fetchCounselors() {
@@ -67,7 +86,6 @@ if ( have_posts() ) :
                 },
 
                 filterCounselors() {
-                    console.log(this.territory);
                     if (!this.territory) {
                         return this.counselors;
                     } else {
@@ -87,7 +105,7 @@ if ( have_posts() ) :
                                 });
                             }
                         });
-                        map1.region_zoom(this.territory);
+                        
                         return filteredCounselorList;
                     }
                 },

@@ -8,8 +8,8 @@ var simplemaps_worldmap_mapdata = {
 
 		//State defaults
 		state_description: 'State description',
-		state_color: '#88A4BC',
-		state_hover_color: '#3B729F',
+		state_color: '#3973b8',
+		state_hover_color: '#9EA9B0',
 		state_url: 'https://simplemaps.com',
 		border_size: 1.5,
 		border_color: '#ffffff',
@@ -38,7 +38,7 @@ var simplemaps_worldmap_mapdata = {
 		hide_labels: 'no',
 
 		//Zoom settings
-		manual_zoom: 'yes',
+		manual_zoom: 'no',
 		back_image: 'no',
 		arrow_box: 'no',
 		navigation_size: '40',
@@ -273,7 +273,7 @@ var simplemaps_worldmap_mapdata = {
 			description: 'default',
 			color: 'default',
 			hover_color: 'default',
-			url: 'default',
+			url: "javascript:clickState({ abbreviation: 'CN', slug: 'china' })",
 		},
 		CI: {
 			name: "Côte d'Ivoire",
@@ -1571,32 +1571,13 @@ var simplemaps_worldmap_mapdata = {
 			url: 'default',
 		},
 	},
-	locations: {
-		'0': {
-			name: 'Paris',
-			lat: '48.866666670',
-			lng: '2.333333333',
-			color: 'default',
-			description: 'default',
-			url: 'default',
-		},
-		'1': {
-			name: 'Tokyo',
-			lat: '35.666666670',
-			lng: '139.750000000',
-			color: 'default',
-			description: 'default',
-			url: 'default',
-		},
-		'3': {
-			name: 'New York',
-			lat: '40.71',
-			lng: '-74.0059731',
-			description: 'default',
-			color: 'default',
-			url: 'default',
-			size: 'default',
+	locations: {},
+	labels: {},
+	regions: {
+		asia: {
+			name: 'Asia',
+			states: ['CN', 'IN', 'TM', 'KZ', 'UZ', 'KG', 'TJ', 'AF'],
+			url: "javascript:clickRegion('asia')",
 		},
 	},
-	labels: {},
 };

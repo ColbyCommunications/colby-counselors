@@ -316,10 +316,6 @@ function enqueue_custom_scripts() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 
-function add_alpine() {
-    echo '<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>';
-}
-add_action('wp_head', 'add_alpine');
 
 function enqueue_map_scripts() {
 
@@ -328,7 +324,7 @@ function enqueue_map_scripts() {
         plugins_url('map-data/us-map/usmap.js', __FILE__),
         array('mapdata-js'), // Load after mapdata.js
         null, // Version number
-        true // Load in the footer
+        false // Load in the footer
     );
 
     wp_enqueue_script(
@@ -336,7 +332,7 @@ function enqueue_map_scripts() {
         plugins_url('map-data/us-map/mapdata1.js', __FILE__),
         array(), // No dependencies
         null, // Version number
-        true // Load in the footer
+        false // Load in the footer
     );
 
 		  wp_enqueue_script(
@@ -344,7 +340,7 @@ function enqueue_map_scripts() {
         plugins_url('map-data/world-map/worldmap.js', __FILE__),
         array('mapdata2-js'), // Load after mapdata.js
         null, // Version number
-        true // Load in the footer
+        false // Load in the footer
     );
 
 		wp_enqueue_script(
@@ -352,12 +348,15 @@ function enqueue_map_scripts() {
         plugins_url('map-data/world-map/mapdata2.js', __FILE__),
         array(), // No dependencies
         null, // Version number
-        true // Load in the footer
+        false // Load in the footer
     );
 
 
-		wp_register_script('maps-script', plugins_url('map-data/maps.js', __FILE__), array(), null, true);
+	wp_register_script('maps-script', plugins_url('map-data/maps.js', __FILE__), array(), null, true);
     wp_enqueue_script('maps-script');
+
+	wp_register_script('alpine', '//cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js', array('maps-script'), null, true);
+    wp_enqueue_script('alpine');
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_map_scripts');

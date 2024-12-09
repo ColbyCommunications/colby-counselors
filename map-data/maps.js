@@ -38,6 +38,34 @@ window.addEventListener('mapZoom', (event) => {
 	}, 500);
 });
 
+window.addEventListener('setMapDescriptions', (event) => {
+	console.log(event);
+	let statesObj = activeMap.mapdata.state_specific;
+
+	let usTerritoryCounselor = event.detail.counselors.find(
+		(c) => c.terms.territories && c.terms.territories.some((t) => t.slug === 'us-territories'),
+	);
+	event.detail.counselors.forEach((counselor) => {
+		for (const key in statesObj) {
+			if (key === 'PR' || key === 'GU' || key === 'VI' || key === 'AS' || key === 'MP') {
+				statesObj[
+					key
+				].description = `<img src="${usTerritoryCounselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${usTerritoryCounselor.meta.first_name} ${usTerritoryCounselor.meta.last_name}</span><br>${counselor.meta.job_title}`;
+			} else if (
+				counselor.terms.territories &&
+				counselor.terms.territories.some(
+					(terr) => terr.slug === statesObj[key].name.replace(/\s+/g, '-').toLowerCase(),
+				)
+			) {
+				statesObj[
+					key
+				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name} ${counselor.meta.last_name}</span><br><span style="font-size: 18px;">${counselor.meta.job_title}</span>`;
+			}
+		}
+	});
+	activeMap.load();
+});
+
 const clickRegion = (region) => {
 	console.log(activeMap);
 	activeMap.region_zoom(region);

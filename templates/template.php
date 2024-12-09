@@ -55,6 +55,7 @@ if ( have_posts() ) :
                         window.dispatchEvent(eventZoom);
                     }
                     
+                    
                 },
 
                 setTab(tab) {
@@ -81,6 +82,12 @@ if ( have_posts() ) :
                     } catch (error) {
                         console.error('Error fetching counselors:', error);
                     } finally {
+                        const setMapDescriptions = new CustomEvent('setMapDescriptions', {
+                            detail: {
+                                counselors: this.counselors,
+                            }
+                        });
+                        window.dispatchEvent(setMapDescriptions);
                         this.loading = false;
                     }
                 },
@@ -146,7 +153,7 @@ if ( have_posts() ) :
                                 'counselor-bg-colbyBlue text-white': tab === 'us',
                                 'counselor-text-colbyBlue': tab !== 'us'
                             }" 
-                            class="toggle-button counselor-mr-8 counselor-py-2 counselor-px-12 counselor-border counselor-border-gray-500 counselor-rounded counselor-font-medium">
+                            class="mb-4 toggle-button counselor-mr-8 counselor-py-2 counselor-px-12 counselor-border counselor-border-gray-500 counselor-rounded counselor-font-medium">
                             Domestic
                         </button>
                         

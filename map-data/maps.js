@@ -40,30 +40,45 @@ window.addEventListener('mapZoom', (event) => {
 
 window.addEventListener('setMapDescriptions', (event) => {
 	console.log(event);
-	let statesObj = activeMap.mapdata.state_specific;
+	let map1StatesObj = map1.mapdata.state_specific;
+	let map2StatesObj = map2.mapdata.state_specific;
 
 	let usTerritoryCounselor = event.detail.counselors.find(
 		(c) => c.terms.territories && c.terms.territories.some((t) => t.slug === 'us-territories'),
 	);
+
 	event.detail.counselors.forEach((counselor) => {
-		for (const key in statesObj) {
+		for (const key in map1StatesObj) {
 			if (key === 'PR' || key === 'GU' || key === 'VI' || key === 'AS' || key === 'MP') {
-				statesObj[
+				map1StatesObj[
 					key
 				].description = `<img src="${usTerritoryCounselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${usTerritoryCounselor.meta.first_name} ${usTerritoryCounselor.meta.last_name}</span><br>${counselor.meta.job_title}`;
 			} else if (
 				counselor.terms.territories &&
 				counselor.terms.territories.some(
-					(terr) => terr.slug === statesObj[key].name.replace(/\s+/g, '-').toLowerCase(),
+					(terr) => terr.slug === map1StatesObj[key].name.replace(/\s+/g, '-').toLowerCase(),
 				)
 			) {
-				statesObj[
+				map1StatesObj[
 					key
-				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name} ${counselor.meta.last_name}</span><br><span style="font-size: 18px;">${counselor.meta.job_title}</span>`;
+				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name} ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
+			}
+		}
+		for (const key in map2StatesObj) {
+			if (
+				counselor.terms.territories &&
+				counselor.terms.territories.some(
+					(terr) => terr.slug === map2StatesObj[key].name.replace(/\s+/g, '-').toLowerCase(),
+				)
+			) {
+				map2StatesObj[
+					key
+				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name} ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
 			}
 		}
 	});
-	activeMap.load();
+	map1.refresh();
+	map2.refresh();
 });
 
 const clickRegion = (region) => {

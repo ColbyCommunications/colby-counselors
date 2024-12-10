@@ -20,6 +20,7 @@ if ( have_posts() ) :
                 counselors: [],
                 filteredCounselors: [],
                 loading: true,
+                loaded: false,
                 init() {
                     // set map click event listener
                     window.addEventListener('regionUpdated', (event) => {
@@ -55,6 +56,7 @@ if ( have_posts() ) :
                         window.dispatchEvent(eventZoom);
                     }
                     
+                    this.loaded = true;
                     
                 },
 
@@ -87,7 +89,10 @@ if ( have_posts() ) :
                                 counselors: this.counselors,
                             }
                         });
-                        window.dispatchEvent(setMapDescriptions);
+                        if(this.loading) {
+                            window.dispatchEvent(setMapDescriptions);
+                        }
+                   
                         this.loading = false;
                     }
                 },

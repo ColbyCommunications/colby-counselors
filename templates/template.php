@@ -63,9 +63,6 @@ if ( have_posts() ) :
                 setTab(tab) {
 
                     this.tab = tab;
-
-                    
-                    
                     this.territory = '';
                     const currentUrl = new URL(window.location.href);
                     currentUrl.searchParams.set('tab', tab);
@@ -73,7 +70,10 @@ if ( have_posts() ) :
 	                window.history.pushState({}, '', currentUrl.toString());
                     window.activeTab = tab;
                     window.dispatchEvent(setActiveMap);
-                    window.dispatchEvent(eventRefresh);
+                    setTimeout(() => {
+                        window.dispatchEvent(eventRefresh);
+                    }, 500);
+                    
                 },
 
                 async fetchCounselors() {

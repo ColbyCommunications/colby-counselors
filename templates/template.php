@@ -198,7 +198,7 @@ if ( have_posts() ) :
                 <template x-if="filteredCounselors.length > 0">
                     <div class="counselor-grid counselor-grid-cols-1 md:counselor-grid-cols-2">
                         <template x-for="counselor in filteredCounselors" :key="counselor.id">
-                            <template x-if="!counselor.meta.highlight">
+                            <template x-if="!counselor.meta.highlight || (!counselor.meta.highlight[0])">
                             <article class="px-container py-8 counselor-grid md:counselor-grid-cols-1 lg:counselor-grid-cols-2">
                                 <div class="counselor-mb-2 lg:counselor-mb-0">
                                     <img :src="counselor.thumbnail" alt="Counselor photo" class="counselor-photo" />

@@ -72,7 +72,7 @@ if ( have_posts() ) :
                     window.dispatchEvent(setActiveMap);
                     setTimeout(() => {
                         window.dispatchEvent(eventRefresh);
-                    }, 250);
+                    }, 100);
                     
                 },
 

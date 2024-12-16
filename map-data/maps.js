@@ -20,7 +20,6 @@ const updateRegionInAlpine = (region) => {
 };
 
 window.addEventListener('setActiveMap', (event) => {
-	console.log('activemap');
 	if (window.activeTab === 'us') {
 		activeMap = map1;
 	} else {
@@ -39,7 +38,6 @@ window.addEventListener('mapZoom', (event) => {
 });
 
 window.addEventListener('setMapDescriptions', (event) => {
-	console.log(event);
 	let map1StatesObj = map1.mapdata.state_specific;
 	let map2StatesObj = map2.mapdata.state_specific;
 
@@ -82,7 +80,6 @@ window.addEventListener('setMapDescriptions', (event) => {
 });
 
 const clickRegion = (region) => {
-	console.log(activeMap);
 	activeMap.region_zoom(region);
 
 	const currentUrl = new URL(window.location.href);
@@ -105,7 +102,6 @@ const clickState = (state) => {
 	currentState = state.slug;
 };
 setTimeout(() => {
-	console.log(activeMap);
 	activeMap.hooks.back = () => {
 		const currentUrl = new URL(window.location.href);
 		switch (activeMap.zoom_level) {

@@ -21,12 +21,14 @@ if ( have_posts() ) :
                 filteredCounselors: [],
                 loading: true,
                 loaded: false,
-                init() {
+                async init() {
                     // set map click event listener
                     window.addEventListener('regionUpdated', (event) => {
                         this.territory = event.detail;
                         this.fetchCounselors();
                     });
+
+                    
 
 
                     // process url params
@@ -49,7 +51,7 @@ if ( have_posts() ) :
 
                     if (territoryParam) {
                         this.territory = territoryParam;
-                        this.filterCounselors();
+                        const counselors = await this.fetchCounselors();
                         const eventZoom = new CustomEvent('mapZoom', {
                             detail: territoryParam,
                         });
@@ -140,7 +142,7 @@ if ( have_posts() ) :
                 }
 
             }"
-            x-init="fetchCounselors()">
+            >
 
         <p class="px-container">For general inquiries, please reach out to (207) 859-4800 or <a href="mailto:admissions@colby.edu" style="color: #062da1">admissions@colby.edu.</a> For financial aid inquiries, please reach out
             to (207) 859-4830 or <a href="mailto:finaid@colby.edu" style="color: #062da1">finaid@colby.edu</a>. </p>

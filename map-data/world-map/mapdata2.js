@@ -1769,5 +1769,10 @@ var simplemaps_worldmap_mapdata = {
 			],
 			url: "javascript:clickRegion('europe')",
 		},
+		oceania: {
+			name: 'Oceania',
+			states: ['AU', 'NZ', 'PG', 'VU', 'NC', 'SB', 'FJ', 'NR', 'TO'],
+			url: "javascript:clickRegion('oceania')",
+		},
 	},
 };

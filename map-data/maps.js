@@ -104,24 +104,10 @@ const clickState = (state) => {
 setTimeout(() => {
 	activeMap.hooks.back = () => {
 		const currentUrl = new URL(window.location.href);
-		switch (activeMap.zoom_level) {
-			case 'state':
-				currentUrl.searchParams.set('territory', currentRegion);
-				window.history.pushState({}, '', currentUrl.toString());
 
-				updateRegionInAlpine(currentRegion);
-				break;
+		currentUrl.searchParams.delete('territory');
+		window.history.pushState({}, '', currentUrl.toString());
 
-			case 'region':
-				currentUrl.searchParams.delete('territory');
-				window.history.pushState({}, '', currentUrl.toString());
-
-				updateRegionInAlpine();
-				break;
-
-			default:
-				console.log('Zoom level is undefined or unexpected. Apply default logic.');
-				break;
-		}
+		updateRegionInAlpine();
 	};
 }, 500);

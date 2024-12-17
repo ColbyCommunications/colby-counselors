@@ -50,14 +50,13 @@ if ( have_posts() ) :
                     window.dispatchEvent(setActiveMap);
 
                     if (territoryParam) {
-                        this.territory = territoryParam;
-                        const counselors = await this.fetchCounselors();
+                        this.territory = territoryParam;    
                         const eventZoom = new CustomEvent('mapZoom', {
                             detail: territoryParam,
                         });
                         window.dispatchEvent(eventZoom);
                     }
-                    
+                    const counselors = await this.fetchCounselors();
                     this.loaded = true;
                     
                 },

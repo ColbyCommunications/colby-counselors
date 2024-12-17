@@ -28,9 +28,6 @@ if ( have_posts() ) :
                         this.fetchCounselors();
                     });
 
-                    
-
-
                     // process url params
                     const currentUrl = new URL(window.location.href);
                     const tabParam = currentUrl.searchParams.get('tab');
@@ -70,6 +67,7 @@ if ( have_posts() ) :
                     currentUrl.searchParams.delete('territory');
 	                window.history.pushState({}, '', currentUrl.toString());
                     window.activeTab = tab;
+                    this.filteredCounselors = this.counselors;
                     window.dispatchEvent(setActiveMap);
                     setTimeout(() => {
                         window.dispatchEvent(eventRefresh);

@@ -1054,7 +1054,7 @@ var simplemaps_worldmap_mapdata = {
 			url: '',
 		},
 		SZ: {
-			name: 'Swaziland',
+			name: 'Eswatini',
 			description: 'default',
 			color: 'default',
 			hover_color: 'default',
@@ -1718,6 +1718,7 @@ var simplemaps_worldmap_mapdata = {
 				'TD',
 				'NA',
 				'GH',
+				'SZ',
 			],
 			url: "javascript:clickRegion('africa')",
 		},

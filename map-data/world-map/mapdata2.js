@@ -634,7 +634,7 @@ var simplemaps_worldmap_mapdata = {
 			url: '',
 		},
 		KR: {
-			name: 'Republic of Korea',
+			name: 'South Korea',
 			description: 'default',
 			color: 'default',
 			hover_color: 'default',
@@ -655,7 +655,7 @@ var simplemaps_worldmap_mapdata = {
 			url: '',
 		},
 		LA: {
-			name: 'Lao PDR',
+			name: 'Laos',
 			description: 'default',
 			color: 'default',
 			hover_color: 'default',
@@ -914,7 +914,7 @@ var simplemaps_worldmap_mapdata = {
 			url: '',
 		},
 		KP: {
-			name: 'Dem. Rep. Korea',
+			name: 'North Korea',
 			description: 'default',
 			color: 'default',
 			hover_color: 'default',
@@ -1229,7 +1229,7 @@ var simplemaps_worldmap_mapdata = {
 			url: '',
 		},
 		GF: {
-			name: 'France',
+			name: 'French Guiana',
 			description: 'default',
 			color: 'default',
 			hover_color: 'default',

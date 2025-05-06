@@ -63,7 +63,16 @@ window.addEventListener('setMapDescriptions', (event) => {
 			}
 		}
 		for (const key in map2StatesObj) {
-			if (
+			if (key === 'CI') {
+				if (
+					counselor.terms.territories &&
+					counselor.terms.territories.some((terr) => terr.slug === 'cote-divoire')
+				) {
+					map2StatesObj[
+						key
+					].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name}  ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
+				}
+			} else if (
 				counselor.terms.territories &&
 				counselor.terms.territories.some(
 					(terr) => terr.slug === map2StatesObj[key].name.replace(/\s+/g, '-').toLowerCase(),

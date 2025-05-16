@@ -1,0 +1,122 @@
+var map1 = simplemaps_usmap.create();
+var map2 = simplemaps_worldmap.create();
+
+let currentState;
+let currentRegion;
+
+window.activeTab;
+
+var activeMap;
+
+const eventRefresh = new CustomEvent('mapRefresh');
+
+const setActiveMap = new CustomEvent('setActiveMap');
+
+const updateRegionInAlpine = (region) => {
+	const event = new CustomEvent('regionUpdated', {
+		detail: region,
+	});
+	window.dispatchEvent(event);
+};
+
+window.addEventListener('setActiveMap', (event) => {
+	if (window.activeTab === 'us') {
+		activeMap = map1;
+	} else {
+		activeMap = map2;
+	}
+});
+
+window.addEventListener('mapRefresh', (event) => {
+	activeMap.load();
+});
+
+window.addEventListener('mapZoom', (event) => {
+	setTimeout(() => {
+		activeMap.region_zoom(event.detail);
+	}, 500);
+});
+
+window.addEventListener('setMapDescriptions', (event) => {
+	let map1StatesObj = map1.mapdata.state_specific;
+	let map2StatesObj = map2.mapdata.state_specific;
+
+	let usTerritoryCounselor = event.detail.counselors.find(
+		(c) => c.terms.territories && c.terms.territories.some((t) => t.slug === 'us-territories'),
+	);
+
+	event.detail.counselors.forEach((counselor) => {
+		for (const key in map1StatesObj) {
+			if (key === 'PR' || key === 'GU' || key === 'VI' || key === 'AS' || key === 'MP') {
+				map1StatesObj[
+					key
+				].description = `<img src="${usTerritoryCounselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${usTerritoryCounselor.meta.first_name} ${usTerritoryCounselor.meta.last_name}</span><br>${counselor.meta.job_title}`;
+			} else if (
+				counselor.terms.territories &&
+				counselor.terms.territories.some(
+					(terr) => terr.slug === map1StatesObj[key].name.replace(/\s+/g, '-').toLowerCase(),
+				)
+			) {
+				map1StatesObj[
+					key
+				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name} ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
+			}
+		}
+		for (const key in map2StatesObj) {
+			if (key === 'CI') {
+				if (
+					counselor.terms.territories &&
+					counselor.terms.territories.some((terr) => terr.slug === 'cote-divoire')
+				) {
+					map2StatesObj[
+						key
+					].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name}  ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
+				}
+			} else if (
+				counselor.terms.territories &&
+				counselor.terms.territories.some(
+					(terr) => terr.slug === map2StatesObj[key].name.replace(/\s+/g, '-').toLowerCase(),
+				)
+			) {
+				map2StatesObj[
+					key
+				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name} ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
+			}
+		}
+	});
+	map1.refresh();
+	map2.refresh();
+});
+
+const clickRegion = (region) => {
+	activeMap.region_zoom(region);
+
+	const currentUrl = new URL(window.location.href);
+	currentUrl.searchParams.set('territory', region);
+	window.history.pushState({}, '', currentUrl.toString());
+
+	updateRegionInAlpine(region);
+	currentRegion = region;
+};
+
+const clickState = (state) => {
+	activeMap.state_zoom(state.abbreviation);
+
+	const currentUrl = new URL(window.location.href);
+	currentUrl.searchParams.set('territory', state.slug);
+	window.history.pushState({}, '', currentUrl.toString());
+
+	// Dispatch event to update Alpine region data
+	updateRegionInAlpine(state.slug);
+	currentState = state.slug;
+};
+setTimeout(() => {
+	activeMap.hooks.back = () => {
+		const currentUrl = new URL(window.location.href);
+
+		currentUrl.searchParams.delete('territory');
+		window.history.pushState({}, '', currentUrl.toString());
+
+		updateRegionInAlpine();
+	};
+}, 500);

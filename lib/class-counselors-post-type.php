@@ -72,6 +72,13 @@ final class Counselors_Post_Type extends Post_Type {
 	 */
 	const REGIONAL_REPRESENTATIVE_META_KEY = 'regional_representative';
 
+		/**
+	 * Highlight meta key.
+	 *
+	 * @var string
+	 */
+	const HIGHLIGHT_META_KEY = 'highlight';
+
 	/**
 	 * Fields that have string defaults.
 	 *
@@ -132,10 +139,12 @@ final class Counselors_Post_Type extends Post_Type {
 				self::get_string_meta_values(),
 				[
 					self::REGIONAL_REPRESENTATIVE_META_KEY => boolval( get_post_meta( get_the_ID(), self::REGIONAL_REPRESENTATIVE_META_KEY, true ) ) ?: false,
+					self::HIGHLIGHT_META_KEY => boolval( get_post_meta( get_the_ID(), self::HIGHLIGHT_META_KEY, true ) ) ?: false,
 				]
 			),
 		];
 	}
+	
 
 	/**
 	 * Saves the meta data
@@ -162,6 +171,22 @@ final class Counselors_Post_Type extends Post_Type {
 				self::REGIONAL_REPRESENTATIVE_META_KEY,
 				boolval( $form_input[ self::REGIONAL_REPRESENTATIVE_META_KEY ] )
 			);
+		}
+
+		if ( isset( $form_input[ self::HIGHLIGHT_META_KEY ] ) ) {
+			// Checkbox is checked, update the meta to true
+			update_post_meta(
+					get_the_ID(),
+					self::HIGHLIGHT_META_KEY,
+					boolval( $form_input[ self::HIGHLIGHT_META_KEY ] )
+			);
+		} else {
+				// Checkbox is unchecked, update the meta to false or delete the meta key
+				update_post_meta(
+						get_the_ID(),
+						self::HIGHLIGHT_META_KEY,
+						false
+				);
 		}
 
 		// Build the post title from Lastname, Firstname.

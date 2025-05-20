@@ -77,7 +77,7 @@ if ( have_posts() ) :
 
                 async fetchCounselors() {
                     try {
-                        const response = await fetch('https://dev-54ta5gq-vzguznjotqfs2.us-2.platformsh.site/wp-json/counselors/v1/counselors');
+                        const response = await fetch('https://afa.colby.edu/wp-json/counselors/v1/counselors');
                         const data = await response.json();
                         this.counselors = data;
                         this.filteredCounselors = this.filterCounselors(data, this.territory); // Initial filtering

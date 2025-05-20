@@ -204,12 +204,12 @@ if ( have_posts() ) :
                                     </div>
                                 </div>
                                 <div class="lg:counselor-pl-2 md:text-md">
-                                    <h4 class="counselor-font-bold counselor-text-lg" x-text="`${counselor.meta.first_name} ${counselor.meta.last_name}`"></h4>
-                                    <p class="mb-4 font-normal" x-text="counselor.meta.pronouns"></p>
-                                    <p style="color: #273057" x-text="counselor.meta.job_title"></p>
+                                    <h4 class="counselor-font-bold counselor-text-lg" x-text="`${counselor.meta.first_name[0]} ${counselor.meta.last_name[0]}`"></h4>
+                                    <p class="mb-4 font-normal" x-text="counselor.meta.pronouns[0]"></p>
+                                    <p style="color: #273057" x-text="counselor.meta.job_title[0]"></p>
                                     <div>
-                                        <p><a style="color: #062da1" x-text="counselor.meta.email"></a></p>
-                                        <p x-text="counselor.meta.phone"></p>
+                                        <p><a style="color: #062da1" x-text="counselor.meta.email[0]"></a></p>
+                                        <p x-text="counselor.meta.phone[0]"></p>
                                     </div>
                                     <div class="">
                                         <p class="counselor-font-bold">Primary Contact:

@@ -50,7 +50,7 @@ window.addEventListener('setMapDescriptions', (event) => {
 			if (key === 'PR' || key === 'GU' || key === 'VI' || key === 'AS' || key === 'MP') {
 				map1StatesObj[
 					key
-				].description = `<img src="${usTerritoryCounselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${usTerritoryCounselor.meta.first_name} ${usTerritoryCounselor.meta.last_name}</span><br>${counselor.meta.job_title}`;
+				].description = `<img src="${usTerritoryCounselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${usTerritoryCounselor.meta.first_name[0]} ${usTerritoryCounselor.meta.last_name[0]}</span><br>${counselor.meta.job_title[0]}`;
 			} else if (
 				counselor.terms.territories &&
 				counselor.terms.territories.some(
@@ -59,7 +59,7 @@ window.addEventListener('setMapDescriptions', (event) => {
 			) {
 				map1StatesObj[
 					key
-				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name} ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
+				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name[0]} ${counselor.meta.last_name[0]}</span><br><span style="font-size: 14px;">${counselor.meta.job_title[0]}</span>`;
 			}
 		}
 		for (const key in map2StatesObj) {
@@ -70,7 +70,7 @@ window.addEventListener('setMapDescriptions', (event) => {
 				) {
 					map2StatesObj[
 						key
-					].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name}  ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
+					].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name[0]}  ${counselor.meta.last_name[0]}</span><br><span style="font-size: 14px;">${counselor.meta.job_title[0]}</span>`;
 				}
 			} else if (
 				counselor.terms.territories &&
@@ -80,7 +80,7 @@ window.addEventListener('setMapDescriptions', (event) => {
 			) {
 				map2StatesObj[
 					key
-				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name} ${counselor.meta.last_name}</span><br><span style="font-size: 14px;">${counselor.meta.job_title}</span>`;
+				].description = `<img src="${counselor.thumbnail}" style="width: 200px"/><span style="font-size: 20px;">${counselor.meta.first_name[0]} ${counselor.meta.last_name[0]}</span><br><span style="font-size: 14px;">${counselor.meta.job_title[0]}</span>`;
 			}
 		}
 	});

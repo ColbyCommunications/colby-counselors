@@ -3,6 +3,7 @@
 	"type": "wordpress-plugin",
 	"require": {
 		"php": "^8.0",
+		"colbycommunications/wp-autoload": "dev-master",
 		"colbycommunications/wp-singleton": "dev-master"
 	},
 	"require-dev": {

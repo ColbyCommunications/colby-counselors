@@ -3,8 +3,8 @@
 	"type": "wordpress-plugin",
 	"require": {
 		"php": "^8.0",
-		"colbycommunications/wp-autoload": "1.0.0",
-		"colbycommunications/wp-singleton": "1.0.0"
+		"colbycommunications/wp-autoload": "^1.0",
+		"colbycommunications/wp-singleton": "^1.0"
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.4",

@@ -3,8 +3,8 @@
 	"type": "wordpress-plugin",
 	"require": {
 		"php": "^8.0",
-		"johnwatkins0/wp-autoload": "^1.0",
-		"johnwatkins0/wp-singleton": "^1.0"
+		"colbycommunications/wp-autoload": "dev-master",
+		"colbycommunications/wp-singleton": "dev-master"
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "^3.4",
@@ -12,5 +12,15 @@
 	},
 	"scripts": {
 		"lint": "phpcs"
-	}
+	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/ColbyCommunications/wp-autoload"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/ColbyCommunications/wp-singleton"
+		}
+	]
 }

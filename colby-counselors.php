@@ -12,7 +12,7 @@ if ( ! function_exists( 'register_wp_autoload' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
-JohnWatkins0\WPAutoload\register_wp_autoload( 'Colby_Counselors\\', __DIR__ . '/lib' );
+ColbyCommunications\WPAutoload\register_wp_autoload( 'Colby_Counselors\\', __DIR__ . '/lib' );
 
 Colby_Counselors\Counselors_Post_Type::get_instance();
 // Colby_Counselors\Counselor_Events_Post_Type::get_instance();

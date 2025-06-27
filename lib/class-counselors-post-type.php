@@ -8,7 +8,7 @@
 namespace Colby_Counselors;
 
 use WP_Query;
-use JohnWatkins0\WPSingleton\Singleton;
+use ColbyCommunications\WPSingleton\Singleton;
 
 /**
  * Counselors_Post_Typeclass

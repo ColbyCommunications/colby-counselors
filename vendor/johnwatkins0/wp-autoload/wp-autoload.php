@@ -5,7 +5,7 @@
  * @package johnwatkins0/wp_autoload
  */
 
-namespace JohnWatkins0\WPAutoload;
+namespace ColbyCommunications\WPAutoload;
 
 /**
  * Registers an autoloader.

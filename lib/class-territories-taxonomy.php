@@ -7,7 +7,7 @@
 
 namespace Colby_Counselors;
 
-use JohnWatkins0\WPSingleton\Singleton;
+use ColbyCommunications\WPSingleton\Singleton;
 
 /**
  * Counselors_Post_Typeclass

@@ -5,7 +5,7 @@
  * @package johnwatkins0/wp-singleton
  */
 
-namespace JohnWatkins0\WPSingleton;
+namespace ColbyCommunications\WPSingleton;
 
 /**
  * Trait Singleton

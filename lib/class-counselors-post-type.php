@@ -106,7 +106,11 @@ final class Counselors_Post_Type extends Post_Type {
 			],
 			'public'       => true,
 			'show_ui'      => true,
-			'has_archive'  => true,
+			'has_archive'  => 'territory-managers',
+			'rewrite'      => [
+				'slug'       => 'territory-managers',
+				'with_front' => false,
+			],
 			'show_in_menu' => true,
 			'supports'     => [ 'thumbnail' ],
 		];

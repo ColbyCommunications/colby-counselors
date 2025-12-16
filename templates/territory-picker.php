@@ -12,7 +12,7 @@ $international_territories = colby_counselors_get_global_territories();
 ?>
 
 <div id="location-filter" class="px-container location-filter mt-8 pb-4 flex flex-col items-start"><div>
-	<h2 class="mb-4 text-2xl font-bold" style="color: #052168;">Contacts by Region</h2>
+	<h2 class="mb-4 text-2xl font-bold" style="color: #052168;">Territory Managers by Region</h2>
 	<p class="mb-4">Primary contacts are assigned based on the geographic region of a student’s current school, or the most recent school attended. </p>
 	<div class="flex flex-col">
 

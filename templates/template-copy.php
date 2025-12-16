@@ -27,7 +27,6 @@ if ( have_posts() ) :
     }
 
     ?>
-    <div style="background-color: #022168;"><h1 class="mx-auto px-container container mb-4 py-2 text-3xl counselor-font-bold" style=" color: #FFFF"><?php colby_counselors_archive_title(); ?></h1></div>
 
     <main class="colby-counselors-main main container mx-auto mt-8 md:mt-8 lg:mt-16" id="main">
 
@@ -39,7 +38,7 @@ if ( have_posts() ) :
 
         <?php if ( is_archive() ) : ?>
             <div class="mb-12 px-container">
-                <h2 class="mb-6 text-2xl font-bold" style="color: #052168;">Contacts by Region</h2>
+                <h2 class="mb-6 text-2xl font-bold" style="color: #052168;">Territory Managers by Region</h2>
                 <div x-data="{ tab: 'domestic' }">
                     <div class="mb-6">
                         <button 

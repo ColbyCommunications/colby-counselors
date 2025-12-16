@@ -287,22 +287,6 @@ function colby_counselors_the_territory_list() {
 	return ["international" => esc_html( implode( ', ', $term_names_i )), "domestic" => esc_html( implode( ', ', $term_names_d ))];
 }
 
-/**
- * Echoes the title of an archive page.
- *
- * @return void
- */
-function colby_counselors_archive_title() : void {
-	if ( Colby_Counselors\Counselors_Post_Type::NAME === get_query_var( 'post_type' ) ) {
-		$value = __( 'Meet Our Team', 'colby-counselors' );
-	} 
-	// else {
-	// 	$value = __( 'Colby Counselor Events', 'colby-counselors' );
-	// }
-
-	echo esc_html( $value );
-}
-
 function enqueue_custom_scripts() {
     // Get the dimensions of the 'medium' size thumbnail
     $medium_size = get_option('thumbnail_size_w'); // Default width

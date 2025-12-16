@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for a single counselor.
+ * Template for a single counselor
  *
  * @package colbycomms/counselors
  */
